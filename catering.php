@@ -1,39 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php include 'includes/head.php'; ?>
   <title>Catering | Bagel Boyz NJ - Bagel Platters, Sandwich Trays & More</title>
   <meta name="description" content="Bagel Boyz NJ catering for offices, parties, and events. Bagel platters, breakfast sandwich trays, deli spreads, and custom packages. Serving Hazlet, Holmdel, Keyport & Monmouth County.">
   <meta property="og:title" content="Catering | Bagel Boyz NJ">
   <meta property="og:description" content="Catering for any occasion. Bagel platters, sandwich trays, and custom packages for your next event.">
-  <link rel="canonical" href="https://bagelboyznj.com/catering.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="canonical" href="https://bagelboyznj.com/catering.php">
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="nav-logo"><img src="img/BBLOGO.1000px-Black.png" alt="Bagel Boyz NJ"></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="catering.html" class="active">Catering</a>
-        <a href="order.html">Order Online</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="social.html">Social</a>
-        <a href="about.html">Our Story</a>
-        <a href="careers.html">Careers</a>
-        <a href="order.html" class="nav-order-btn"><i class="fas fa-shopping-bag"></i> Order Now</a>
-      </div>
-      <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
+  <?php include 'includes/nav.php'; ?>
 
   <!-- Page Header -->
   <div class="page-header">
@@ -285,40 +262,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img src="img/BBLOGO.1000px.png" alt="Bagel Boyz" class="footer-logo">
-          <p>Fresh baked bagels, breakfast sandwiches, and deli classics. Two locations in Hazlet, NJ.</p>
-          <div class="footer-social">
-            <a href="https://www.instagram.com/bagelboyznj" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/bagelboyznj" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <a href="menu.html">Menu</a><br><a href="catering.html">Catering</a><br><a href="order.html">Order Online</a><br><a href="reviews.html">Reviews</a><br><a href="about.html">Our Story</a><br><a href="careers.html">Careers</a>
-        </div>
-        <div class="footer-col">
-          <h4>Holmdel Rd</h4>
-          <p>694 Holmdel Rd<br>Hazlet, NJ 07730<br><a href="tel:7326464455">(732) 646-4455</a></p>
-          <h4 style="margin-top: var(--space-md);">Airport Plaza</h4>
-          <p>1352 NJ-36<br>Hazlet, NJ 07730<br><a href="tel:7323351300">(732) 335-1300</a></p>
-        </div>
-        <div class="footer-col">
-          <h4>Hours</h4>
-          <p>Monday - Sunday<br>6:00 AM - 3:00 PM<br><br><strong style="color: var(--bb-gold-light);">Open 7 Days a Week</strong></p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 Bagel Boyz NJ. All rights reserved.</span>
-        <span>Made with <i class="fas fa-heart" style="color: var(--bb-gold);"></i> in Hazlet, NJ</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+  <?php include 'includes/footer.php'; ?>
 </body>
 </html>

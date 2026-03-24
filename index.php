@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php include 'includes/head.php'; ?>
   <title>Bagel Boyz NJ | Best Bagels in Hazlet, NJ - Fresh Baked Daily</title>
   <meta name="description" content="Bagel Boyz NJ - Fresh baked bagels, breakfast sandwiches, and deli classics in Hazlet, NJ. Two locations serving Holmdel, Keyport, Middletown & Aberdeen. Open 6AM-3PM daily.">
   <meta name="keywords" content="bagels Hazlet NJ, bagel shop near me, breakfast sandwiches Hazlet, Taylor Ham egg cheese NJ, best bagels Monmouth County, Bagel Boyz, deli Hazlet NJ">
@@ -18,17 +17,6 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bagel Boyz NJ | Fresh Baked Bagels">
   <meta name="twitter:description" content="Best bagels in Hazlet, NJ. Two locations, open 6AM-3PM daily.">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://bagelboyznj.com/">
@@ -100,30 +88,7 @@
 </head>
 <body>
 
-  <!-- ======== NAVIGATION ======== -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="nav-logo">
-        <img src="img/BBLOGO.1000px-Black.png" alt="Bagel Boyz NJ">
-      </a>
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="menu.html">Menu</a>
-        <a href="catering.html">Catering</a>
-        <a href="order.html">Order Online</a>
-        <a href="reviews.html">Reviews</a>
-        <a href="social.html">Social</a>
-        <a href="about.html">Our Story</a>
-        <a href="careers.html">Careers</a>
-        <a href="order.html" class="nav-order-btn"><i class="fas fa-shopping-bag"></i> Order Now</a>
-      </div>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+  <?php include 'includes/nav.php'; ?>
 
   <!-- ======== HERO ======== -->
   <section class="hero">
@@ -132,8 +97,8 @@
       <h1>Fresh Baked. Jersey Made.</h1>
       <p class="subtitle">Serving the best bagels in Hazlet, NJ since 2021</p>
       <div class="hero-buttons">
-        <a href="menu.html" class="btn btn-primary btn-lg"><i class="fas fa-utensils"></i> View Our Menu</a>
-        <a href="order.html" class="btn btn-secondary btn-lg" style="border-color: var(--bb-gold-light); color: var(--bb-gold-light);"><i class="fas fa-shopping-bag"></i> Order Online</a>
+        <a href="menu.php" class="btn btn-primary btn-lg"><i class="fas fa-utensils"></i> View Our Menu</a>
+        <a href="order.php" class="btn btn-secondary btn-lg" style="border-color: var(--bb-gold-light); color: var(--bb-gold-light);"><i class="fas fa-shopping-bag"></i> Order Online</a>
       </div>
     </div>
     <a href="#locations" class="hero-scroll"><i class="fas fa-chevron-down"></i></a>
@@ -197,7 +162,7 @@
         </div>
       </div>
       <div class="text-center" style="margin-top: var(--space-xl);">
-        <a href="menu.html" class="btn btn-primary btn-lg"><i class="fas fa-utensils"></i> See Full Menu</a>
+        <a href="menu.php" class="btn btn-primary btn-lg"><i class="fas fa-utensils"></i> See Full Menu</a>
       </div>
     </div>
   </section>
@@ -270,7 +235,7 @@
     <div class="container">
       <h2>Catering for Any Occasion</h2>
       <p>From office meetings to family gatherings, we've got your catering covered. Fresh bagel platters, sandwich trays, and more.</p>
-      <a href="catering.html" class="btn btn-white btn-lg"><i class="fas fa-clipboard-list"></i> View Catering Menu</a>
+      <a href="catering.php" class="btn btn-white btn-lg"><i class="fas fa-clipboard-list"></i> View Catering Menu</a>
     </div>
   </section>
 
@@ -308,7 +273,7 @@
         </div>
       </div>
       <div class="text-center" style="margin-top: var(--space-xl);">
-        <a href="reviews.html" class="btn btn-primary"><i class="fas fa-star"></i> See All Reviews</a>
+        <a href="reviews.php" class="btn btn-primary"><i class="fas fa-star"></i> See All Reviews</a>
       </div>
     </div>
   </section>
@@ -319,63 +284,12 @@
       <h2>Order from Your Couch</h2>
       <p style="max-width: 500px; margin: 0 auto var(--space-lg);">Skip the line. Order through DoorDash or Grubhub and we'll have it ready.</p>
       <div class="hero-buttons">
-        <a href="order.html" class="btn btn-primary btn-lg"><i class="fas fa-truck"></i> Order Delivery</a>
+        <a href="order.php" class="btn btn-primary btn-lg"><i class="fas fa-truck"></i> Order Delivery</a>
         <a href="tel:7326464455" class="btn btn-secondary btn-lg" style="border-color: var(--bb-gold-light); color: var(--bb-gold-light);"><i class="fas fa-phone"></i> Call Ahead</a>
       </div>
     </div>
   </section>
 
-  <!-- ======== FOOTER ======== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <img src="img/BBLOGO.1000px.png" alt="Bagel Boyz" class="footer-logo">
-          <p>Fresh baked bagels, breakfast sandwiches, and deli classics. Two locations in Hazlet, NJ.</p>
-          <div class="footer-social">
-            <a href="https://www.instagram.com/bagelboyznj" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/bagelboyznj" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <a href="menu.html">Menu</a><br>
-          <a href="catering.html">Catering</a><br>
-          <a href="order.html">Order Online</a><br>
-          <a href="reviews.html">Reviews</a><br>
-          <a href="about.html">Our Story</a><br>
-          <a href="careers.html">Careers</a>
-        </div>
-        <div class="footer-col">
-          <h4>Holmdel Rd</h4>
-          <p>
-            694 Holmdel Rd<br>
-            Hazlet, NJ 07730<br>
-            <a href="tel:7326464455">(732) 646-4455</a>
-          </p>
-          <h4 style="margin-top: var(--space-md);">Airport Plaza</h4>
-          <p>
-            1352 NJ-36<br>
-            Hazlet, NJ 07730<br>
-            <a href="tel:7323351300">(732) 335-1300</a>
-          </p>
-        </div>
-        <div class="footer-col">
-          <h4>Hours</h4>
-          <p>
-            Monday - Sunday<br>
-            6:00 AM - 3:00 PM<br><br>
-            <strong style="color: var(--bb-gold-light);">Open 7 Days a Week</strong>
-          </p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 Bagel Boyz NJ. All rights reserved.</span>
-        <span>Made with <i class="fas fa-heart" style="color: var(--bb-gold);"></i> in Hazlet, NJ</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+  <?php include 'includes/footer.php'; ?>
 </body>
 </html>
