@@ -74,26 +74,59 @@ async function generateAIBackground(sceneDescription, size) {
     }
   }
 
-  // Try 2: OpenRouter Flux
+  // Try 2: OpenRouter Image Generation (Flux or other available model)
   if (process.env.OPENROUTER_API_KEY) {
     try {
-      console.log('[ImageEngine] Trying OpenRouter Flux...');
+      console.log('[ImageEngine] Trying OpenRouter image generation...');
       const res = await axios.post('https://openrouter.ai/api/v1/images/generations', {
         model: 'black-forest-labs/flux-1.1-pro',
-        prompt: `Professional food photography: ${sceneDescription}. Warm natural lighting, appetizing.`,
+        prompt: `Professional food photography, photorealistic: ${sceneDescription}. Warm natural lighting, shallow depth of field, appetizing colors, close-up shot. No text, no logos, no watermarks, no people.`,
         n: 1,
-        size: size.width >= size.height ? '1024x768' : '768x1024'
+        size: size.width >= size.height ? '1024x768' : '1024x1024'
       }, {
-        headers: { 'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}` },
-        timeout: 60000
+        headers: {
+          'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        timeout: 90000
       });
 
+      if (res.data?.data?.[0]?.b64_json) {
+        const buf = Buffer.from(res.data.data[0].b64_json, 'base64');
+        return loadImage(buf);
+      }
       if (res.data?.data?.[0]?.url) {
         const imgRes = await axios.get(res.data.data[0].url, { responseType: 'arraybuffer', timeout: 30000 });
         return loadImage(Buffer.from(imgRes.data));
       }
     } catch (err) {
-      console.warn('[ImageEngine] OpenRouter Flux failed:', err.message);
+      console.warn('[ImageEngine] OpenRouter image gen failed:', err.message);
+      // Try alternate model
+      try {
+        console.log('[ImageEngine] Trying OpenRouter alternate model...');
+        const res = await axios.post('https://openrouter.ai/api/v1/images/generations', {
+          model: 'stabilityai/stable-diffusion-xl',
+          prompt: `Professional food photography, photorealistic: ${sceneDescription}. Warm natural lighting, shallow depth of field, appetizing colors, close-up shot. No text, no logos, no watermarks, no people.`,
+          n: 1,
+          size: '1024x1024'
+        }, {
+          headers: {
+            'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          timeout: 90000
+        });
+
+        if (res.data?.data?.[0]?.b64_json) {
+          return loadImage(Buffer.from(res.data.data[0].b64_json, 'base64'));
+        }
+        if (res.data?.data?.[0]?.url) {
+          const imgRes = await axios.get(res.data.data[0].url, { responseType: 'arraybuffer', timeout: 30000 });
+          return loadImage(Buffer.from(imgRes.data));
+        }
+      } catch (err2) {
+        console.warn('[ImageEngine] OpenRouter alternate also failed:', err2.message);
+      }
     }
   }
 
@@ -158,71 +191,119 @@ async function drawLogo(ctx, x, y, maxHeight = 40) {
   }
 }
 
-// ─── Layout: Bottom Text Bar ───────────────────────────────
+// ─── Layout 1: Black Banner Top (Primary - matches brand style) ──
+// Black semi-transparent banner at top-center with bold white text + logo at bottom
+async function renderBlackBannerTopLayout(ctx, w, h, headline) {
+  if (headline) {
+    const fontSize = w > 1000 ? 44 : 36;
+    ctx.font = `bold ${fontSize}px "Inter", sans-serif`;
+    ctx.textAlign = 'center';
+
+    const lines = wrapText(ctx, headline, w - 120);
+    const lineHeight = fontSize * 1.25;
+    const bannerPadding = 20;
+    const bannerHeight = (lines.length * lineHeight) + (bannerPadding * 2) + 10;
+    const bannerY = Math.round(h * 0.08);
+
+    // Black banner background with rounded corners
+    const bannerX = Math.round(w * 0.08);
+    const bannerW = Math.round(w * 0.84);
+    const radius = 12;
+    ctx.fillStyle = 'rgba(0,0,0,0.82)';
+    ctx.beginPath();
+    ctx.moveTo(bannerX + radius, bannerY);
+    ctx.lineTo(bannerX + bannerW - radius, bannerY);
+    ctx.arcTo(bannerX + bannerW, bannerY, bannerX + bannerW, bannerY + radius, radius);
+    ctx.lineTo(bannerX + bannerW, bannerY + bannerHeight - radius);
+    ctx.arcTo(bannerX + bannerW, bannerY + bannerHeight, bannerX + bannerW - radius, bannerY + bannerHeight, radius);
+    ctx.lineTo(bannerX + radius, bannerY + bannerHeight);
+    ctx.arcTo(bannerX, bannerY + bannerHeight, bannerX, bannerY + bannerHeight - radius, radius);
+    ctx.lineTo(bannerX, bannerY + radius);
+    ctx.arcTo(bannerX, bannerY, bannerX + radius, bannerY, radius);
+    ctx.closePath();
+    ctx.fill();
+
+    // White text centered in banner
+    ctx.fillStyle = BRAND.colors.white;
+    const textStartY = bannerY + bannerPadding + fontSize;
+    for (let i = 0; i < Math.min(lines.length, 3); i++) {
+      ctx.fillText(lines[i], w / 2, textStartY + i * lineHeight);
+    }
+  }
+
+  // Logo in bottom-right corner
+  await drawLogo(ctx, w - 170, h - 60, 40);
+}
+
+// ─── Layout 2: Bottom Text Bar ─────────────────────────────
 async function renderBottomTextLayout(ctx, w, h, headline) {
   // Dark gradient overlay at bottom
-  const grad = ctx.createLinearGradient(0, h * 0.5, 0, h);
+  const grad = ctx.createLinearGradient(0, h * 0.45, 0, h);
   grad.addColorStop(0, 'rgba(0,0,0,0)');
-  grad.addColorStop(0.5, 'rgba(0,0,0,0.3)');
-  grad.addColorStop(1, 'rgba(0,0,0,0.75)');
+  grad.addColorStop(0.4, 'rgba(0,0,0,0.3)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.8)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
 
-  // Headline text
   if (headline) {
-    const fontSize = w > 1000 ? 36 : 28;
+    const fontSize = w > 1000 ? 40 : 32;
     ctx.font = `bold ${fontSize}px "Inter", sans-serif`;
     ctx.fillStyle = BRAND.colors.white;
     ctx.textAlign = 'left';
 
-    const lines = wrapText(ctx, headline, w - 80);
+    const lines = wrapText(ctx, headline, w - 100);
     const lineHeight = fontSize * 1.3;
-    const startY = h - 30 - (lines.length * lineHeight);
+    const startY = h - 35 - (lines.length * lineHeight);
 
     for (let i = 0; i < Math.min(lines.length, 3); i++) {
-      ctx.fillText(lines[i], 40, startY + i * lineHeight);
+      ctx.fillText(lines[i], 45, startY + i * lineHeight);
     }
   }
 
   // Logo in bottom-right
-  await drawLogo(ctx, w - 180, h - 55, 35);
+  await drawLogo(ctx, w - 170, h - 60, 40);
 }
 
-// ─── Layout: Top Bar ───────────────────────────────────────
-async function renderTopBarLayout(ctx, w, h, headline) {
-  // Gold bar at top
+// ─── Layout 3: Gold Accent Bar ─────────────────────────────
+async function renderGoldAccentLayout(ctx, w, h, headline) {
+  // Thin gold accent bar at top
   ctx.fillStyle = BRAND.colors.gold;
-  ctx.fillRect(0, 0, w, 70);
+  ctx.fillRect(0, 0, w, 6);
 
-  // Logo in top bar
-  await drawLogo(ctx, 20, 15, 40);
-
-  // Subtle bottom overlay for text
+  // Black banner at bottom for text
   if (headline) {
-    drawOverlay(ctx, w, h, 0.4);
-    const fontSize = w > 1000 ? 34 : 26;
+    const fontSize = w > 1000 ? 38 : 30;
     ctx.font = `bold ${fontSize}px "Inter", sans-serif`;
-    ctx.fillStyle = BRAND.colors.white;
     ctx.textAlign = 'center';
 
     const lines = wrapText(ctx, headline, w - 100);
-    const lineHeight = fontSize * 1.3;
-    const startY = h - 60 - (lines.length * lineHeight);
+    const lineHeight = fontSize * 1.25;
+    const bannerHeight = (lines.length * lineHeight) + 50;
+    const bannerY = h - bannerHeight;
 
+    // Black bar at bottom
+    ctx.fillStyle = 'rgba(0,0,0,0.85)';
+    ctx.fillRect(0, bannerY, w, bannerHeight);
+
+    // Gold accent line above text
+    ctx.fillStyle = BRAND.colors.gold;
+    ctx.fillRect(0, bannerY, w, 3);
+
+    // White text
+    ctx.fillStyle = BRAND.colors.white;
+    const textStartY = bannerY + 30 + fontSize * 0.3;
     for (let i = 0; i < Math.min(lines.length, 3); i++) {
-      ctx.fillText(lines[i], w / 2, startY + i * lineHeight);
+      ctx.fillText(lines[i], w / 2, textStartY + i * lineHeight);
     }
   }
-}
 
-// ─── Layout: Minimal Logo ──────────────────────────────────
-async function renderMinimalLayout(ctx, w, h) {
-  drawOverlay(ctx, w, h, 0.15);
+  // Logo bottom-left
   await drawLogo(ctx, 30, h - 55, 35);
 }
 
 // ─── Main: Generate Branded Images ─────────────────────────
-const LAYOUTS = [renderBottomTextLayout, renderTopBarLayout, renderMinimalLayout];
+// Black banner top is weighted 50%, the others 25% each for variety
+const LAYOUTS = [renderBlackBannerTopLayout, renderBlackBannerTopLayout, renderBottomTextLayout, renderGoldAccentLayout];
 
 async function generateBrandedImages({ sceneDescription, headline, outputDir, postId }) {
   const results = { landscape: null, square: null };
