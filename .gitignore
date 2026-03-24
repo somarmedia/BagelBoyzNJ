@@ -1,0 +1,6 @@
+backend/.env
+backend/node_modules/
+backend/uploads/
+backend/logs/
+social-feed.json
+*.log

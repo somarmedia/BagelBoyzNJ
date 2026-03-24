@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /php/
+Disallow: /backend/
+
+Sitemap: https://bagelboyznj.com/sitemap.xml
