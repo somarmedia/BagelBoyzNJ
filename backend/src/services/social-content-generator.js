@@ -88,8 +88,109 @@ const CONTENT_CATEGORIES = [
     id: 'community',
     name: 'Community / Local Love',
     prompt: 'Celebrate the Hazlet/Holmdel/Monmouth County community. Local events, supporting neighbors, being part of the neighborhood fabric. The family-owned angle — Robert and Jessica building something for their community.'
+  },
+  {
+    id: 'menu_deep_dive',
+    name: 'Menu Deep Dive',
+    prompt: 'Go deep on one specific menu category: omelets, wraps, deli sandwiches, or sides. Describe the ingredients, preparation, or a specific combo order. Make people discover items they haven\'t tried yet.'
+  },
+  {
+    id: 'bagel_science',
+    name: 'Bagel Science / Process',
+    prompt: 'Educate on the craft: the boil, the dough fermentation, high-gluten flour, malt barley, why NJ water matters (or doesn\'t), oven temperatures, seed application. Make food nerds and casual fans both interested.'
+  },
+  {
+    id: 'morning_energy',
+    name: 'Morning Energy / Routine',
+    prompt: 'Capture the energy of a morning at Bagel Boyz: doors opening at 6 AM, first customers, coffee brewing, the smell hitting you when you walk in. Make people feel like they\'re there.'
+  },
+  {
+    id: 'catering_spotlight',
+    name: 'Catering Spotlight',
+    prompt: 'Showcase catering for offices, parties, game days, holidays. Mention specific platters, wheels, hoagies. Plant the seed for people planning events.'
   }
 ];
+
+// ─── Specific Topics Pool (rotated to prevent repetition) ──
+// Each topic is a specific subject/angle that can only be used once per cycle
+const TOPIC_POOL = [
+  // Menu items
+  'Taylor Ham Egg Cheese on everything with SPK',
+  'Bacon Egg Cheese — the BEC',
+  'Everything bagel with scallion cream cheese',
+  'Western omelet with home fries',
+  'The Works sandwich (TH + bacon + sausage)',
+  'Sesame bagel with lox and cream cheese',
+  'Jalapeño cheddar bagel',
+  'French toast bagel with walnut raisin cream cheese',
+  'Buffalo chicken wrap',
+  'Italian sub on a bagel',
+  'Philly cheesesteak',
+  'Veggie egg and cheese',
+  'Steak egg and cheese',
+  'Greek omelet with feta and spinach',
+  'Cinnamon raisin bagel toasted with butter',
+  'Pumpernickel everything combo',
+  'Gluten-free bagel options',
+  'Bagel chips with cream cheese',
+  'Iced coffee and a fresh bagel',
+  'Hot chocolate on a cold morning',
+  // Cream cheese flavors
+  'Scallion cream cheese',
+  'Jalapeño cream cheese',
+  'Walnut raisin cream cheese',
+  'Veggie cream cheese',
+  'Sundried tomato cream cheese',
+  'Lox spread cream cheese',
+  // NJ Culture
+  'Taylor Ham vs Pork Roll — the great debate',
+  'What SPK means to Jersey people',
+  'The art of the everything bagel',
+  'Why NJ bagels are better than NY bagels',
+  'The boil — what separates real bagels from bread circles',
+  'NJ diner culture meets bagel shop culture',
+  'The Jersey morning commute breakfast ritual',
+  'Monmouth County food scene',
+  // Behind the scenes
+  'Bakers arriving before dawn',
+  'Dough being hand-rolled and shaped',
+  'Bagels hitting the boiling water',
+  'Fresh trays coming out of the oven',
+  'The cream cheese prep station',
+  'The morning rush energy at the counter',
+  'Boar\'s Head deli meats being sliced fresh',
+  // Community
+  'Hazlet neighborhood love',
+  'Holmdel Rd location — the original',
+  'Airport Plaza location — the expansion',
+  'Feeding the local little league / sports teams',
+  'Office catering hero stories',
+  'Weekend family breakfast tradition',
+  'The regulars who come every single day',
+  // Catering
+  'Bagel platter for the office',
+  'Breakfast sandwich tray for a party',
+  'Bagel wheels for game day',
+  '30-inch hoagie for a crowd',
+  'Nova lox platter for brunch',
+  // Seasonal (will also use real date awareness)
+  'Cold weather comfort breakfast',
+  'Summer iced coffee energy',
+  'Holiday catering season',
+  'Back to school quick breakfast',
+  'Weekend brunch vibes',
+  'Rainy day bagel craving',
+  'Spring morning fresh start',
+];
+
+// ─── Pick a specific topic (never repeat within last 21 posts) ──
+function pickTopic() {
+  const recentTopics = recentPosts.slice(0, 21).map(p => p.topic).filter(Boolean);
+  const available = TOPIC_POOL.filter(t => !recentTopics.includes(t));
+  // If we've exhausted the pool, reset (shouldn't happen with 60+ topics and 21 post window)
+  const pool = available.length > 0 ? available : TOPIC_POOL;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
 
 // ─── Brand Voice System Prompt ─────────────────────────────
 const BRAND_VOICE = `You are the social media voice of Bagel Boyz NJ — a family-owned bagel shop in Hazlet, New Jersey with two locations.
@@ -187,19 +288,21 @@ The image is for a social media post by Bagel Boyz NJ, a bagel shop in Hazlet, N
 Category: ${category.name}
 Angle: ${angle}
 
-The scene should be:
-- Photorealistic food photography style
-- Warm, inviting lighting (golden hour, morning light, or warm indoor bakery lighting)
-- Appetizing and mouth-watering
-- Related to bagels, breakfast sandwiches, coffee, or the bagel shop environment
+The scene MUST be:
+- A photorealistic CLOSE-UP food photograph (overhead, 45-degree, or macro angle)
+- Warm, inviting lighting (golden hour, morning light, or natural window light)
+- Appetizing and mouth-watering — make people hungry
+- Focused on the FOOD ITSELF — bagels, sandwiches, cream cheese, coffee, ingredients
+- NEVER show shop interiors, storefronts, people, or staff — FOOD ONLY
 
 Examples of great scenes:
-- Close-up of a golden everything bagel fresh from the oven, steam rising, seeds glistening
-- Taylor Ham egg and cheese on an everything bagel, cross-section showing melted cheese and egg
-- Morning sunlight streaming through bakery windows onto a tray of fresh assorted bagels
-- Hands pulling apart a warm bagel revealing soft chewy interior
-- Iced coffee next to a loaded breakfast sandwich on a wooden counter
-- Cream cheese being spread on a toasted sesame bagel, close-up
+- Close-up of a golden everything bagel fresh from the oven, steam rising, seeds glistening, on parchment paper
+- Taylor Ham egg and cheese on an everything bagel, cross-section showing melted cheese and crispy meat
+- Overhead shot of assorted bagels arranged on a wooden cutting board
+- Hands pulling apart a warm bagel revealing soft chewy interior, steam visible
+- Iced coffee in a clear cup next to a loaded breakfast sandwich, morning light
+- Cream cheese being spread thickly on a toasted sesame bagel, knife mid-spread
+- A fresh omelet being plated with golden home fries
 ${avoidText}
 
 Return ONLY the scene description in 1-2 sentences. No labels, no preamble.`;
@@ -208,10 +311,15 @@ Return ONLY the scene description in 1-2 sentences. No labels, no preamble.`;
 }
 
 // ─── Generate Post Content ─────────────────────────────────
-async function generatePost(category, angle, platforms = ['instagram', 'facebook']) {
-  const historyContext = recentPosts.slice(0, 5).map(p =>
-    `- ${p.category}/${p.angle}: "${p.hookLine}"`
+async function generatePost(category, angle, platforms = ['instagram', 'facebook'], topic = null) {
+  const historyContext = recentPosts.slice(0, 10).map(p =>
+    `- [${p.category}/${p.angle}] Topic: "${p.topic}" — Hook: "${p.hookLine}"`
   ).join('\n');
+
+  const recentTopicList = recentPosts.slice(0, 21).map(p => p.topic).filter(Boolean);
+  const avoidTopics = recentTopicList.length > 0
+    ? `\n\nDO NOT write about any of these recently covered topics:\n${recentTopicList.map((t, i) => `${i + 1}. ${t}`).join('\n')}`
+    : '';
 
   const platformInstructions = platforms.map(p => {
     if (p === 'instagram') return 'INSTAGRAM: 100-150 words. Visual-first. 8-12 hashtags at the end. Casual, punchy.';
@@ -219,21 +327,30 @@ async function generatePost(category, angle, platforms = ['instagram', 'facebook
     return '';
   }).filter(Boolean).join('\n');
 
+  // Get current date context for seasonal relevance
+  const now = new Date();
+  const dateContext = `Current date: ${now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}. Season: ${getSeason(now)}.`;
+
   const prompt = `Generate a social media post for Bagel Boyz NJ.
 
+${dateContext}
+
+SPECIFIC TOPIC FOR THIS POST: ${topic || 'Choose something fresh and specific'}
 CATEGORY: ${category.name}
 CATEGORY DIRECTION: ${category.prompt}
 CONTENT ANGLE: ${angle}
 
 ${platformInstructions}
 
-${historyContext ? `RECENT POSTS (avoid similar hooks/topics):\n${historyContext}\n` : ''}
+${historyContext ? `RECENT POSTS (your post MUST be completely different from all of these):\n${historyContext}\n` : ''}${avoidTopics}
+
+CRITICAL: Be SPECIFIC. Don't write generic "fresh bagels" posts. Focus tightly on the assigned topic. Every post must feel like it's about something NEW — a specific item, a specific moment, a specific story. No two posts should feel the same.
 
 Return the post in this EXACT format (use these exact labels):
 HOOK: [The opening line / hook — the first thing people read]
 INSTAGRAM: [Full Instagram post text including hashtags]
 FACEBOOK: [Full Facebook post text]
-IMAGE_SCENE: [A 1-sentence description of the ideal image for this post]`;
+IMAGE_SCENE: [A 1-sentence description of the ideal food close-up photo for this post — MUST be a realistic food photograph, NOT a shop interior]`;
 
   const response = await callAI(BRAND_VOICE, prompt);
 
@@ -263,19 +380,29 @@ IMAGE_SCENE: [A 1-sentence description of the ideal image for this post]`;
   };
 }
 
+// ─── Season Helper ────────────────────────────────────────
+function getSeason(date) {
+  const month = date.getMonth();
+  if (month >= 2 && month <= 4) return 'Spring';
+  if (month >= 5 && month <= 7) return 'Summer';
+  if (month >= 8 && month <= 10) return 'Fall';
+  return 'Winter';
+}
+
 // ─── Main Orchestrator ─────────────────────────────────────
 async function runSocialAutopilot(runIndex = 0) {
   ensureDir(UPLOAD_DIR);
 
   console.log(`[Autopilot] Run index: ${runIndex}`);
 
-  // 1. Pick category and angle (history-aware)
+  // 1. Pick category, angle, and specific topic (all history-aware)
   const category = pickCategory(runIndex);
   const angle = pickAngle();
-  console.log(`[Autopilot] Category: ${category.id} | Angle: ${angle}`);
+  const topic = pickTopic();
+  console.log(`[Autopilot] Category: ${category.id} | Angle: ${angle} | Topic: ${topic}`);
 
-  // 2. Generate post content
-  const post = await generatePost(category, angle);
+  // 2. Generate post content with specific topic
+  const post = await generatePost(category, angle, ['instagram', 'facebook'], topic);
   console.log(`[Autopilot] Hook: ${post.hook}`);
 
   // 3. Generate AI scene description (or use the one from post)
@@ -302,6 +429,7 @@ async function runSocialAutopilot(runIndex = 0) {
   recentPosts.unshift({
     category: category.id,
     angle,
+    topic,
     hookLine: post.hook,
     imageScene: sceneDesc,
     timestamp: new Date().toISOString()
