@@ -90,6 +90,33 @@ async function publishToFacebook({ text, imagePath, videoPath }) {
   return { id: res.data.id, platform: 'facebook', type: 'text' };
 }
 
+// ─── Helper: Upload image to Facebook and get public URL ──
+async function getPublicImageUrl(imagePath, token, pageId) {
+  // Upload image to Facebook as unpublished, then retrieve its URL
+  const form = new FormData();
+  form.append('source', fs.createReadStream(imagePath));
+  form.append('published', 'false');
+  form.append('access_token', token);
+
+  const uploadRes = await axios.post(`${GRAPH_API}/${pageId}/photos`, form, {
+    headers: form.getHeaders(),
+    timeout: 60000
+  });
+
+  const photoId = uploadRes.data.id;
+
+  // Get the image URL from the uploaded photo
+  const photoRes = await axios.get(`${GRAPH_API}/${photoId}`, {
+    params: { fields: 'images', access_token: token }
+  });
+
+  // Return the largest image URL
+  if (photoRes.data?.images?.length > 0) {
+    return photoRes.data.images[0].source;
+  }
+  return null;
+}
+
 // ─── Instagram Publishing ──────────────────────────────────
 async function publishToInstagram({ text, imagePath, videoPath }) {
   const config = getConfig();
@@ -100,23 +127,27 @@ async function publishToInstagram({ text, imagePath, videoPath }) {
 
   const token = config.facebookPageToken;
   const igId = config.instagramAccountId;
+  const pageId = config.facebookPageId;
 
-  // Instagram requires a public URL for the media
-  // If running locally, the image needs to be served via the backend
   let mediaUrl = null;
   let isVideoPost = false;
 
   if (videoPath && isVideo(videoPath)) {
     isVideoPost = true;
+    // Videos need a publicly accessible URL — use backend URL if public, otherwise skip
     const filename = path.basename(videoPath);
     mediaUrl = `${config.backendUrl}/uploads/social/${filename}`;
   } else if (imagePath && fs.existsSync(imagePath)) {
-    const filename = path.basename(imagePath);
-    mediaUrl = `${config.backendUrl}/uploads/social/${filename}`;
+    // Upload image to Facebook to get a public URL for Instagram
+    console.log('[Publisher] Uploading image to Facebook for Instagram URL...');
+    mediaUrl = await getPublicImageUrl(imagePath, token, pageId);
+    if (mediaUrl) {
+      console.log('[Publisher] Got public image URL for Instagram');
+    }
   }
 
   if (!mediaUrl) {
-    console.warn('[Publisher] Instagram requires an image or video — skipping');
+    console.warn('[Publisher] Instagram requires a public media URL — skipping');
     return null;
   }
 

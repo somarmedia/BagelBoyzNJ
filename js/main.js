@@ -157,6 +157,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // --- Back to Top Button ---
+  var backToTop = document.createElement('button');
+  backToTop.className = 'back-to-top';
+  backToTop.setAttribute('aria-label', 'Back to top');
+  backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+  document.body.appendChild(backToTop);
+
+  window.addEventListener('scroll', function () {
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   // --- Lazy loading for social feed images ---
   if ('IntersectionObserver' in window) {
     var lazyImages = document.querySelectorAll('img[data-src]');

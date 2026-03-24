@@ -30,7 +30,7 @@ async function callAI(systemPrompt, userPrompt, { maxTokens = 1200 } = {}) {
 
   if (isOpenRouter) {
     const res = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
-      model: 'anthropic/claude-sonnet-4-20250514',
+      model: 'anthropic/claude-3.5-sonnet',
       max_tokens: maxTokens,
       messages: [
         { role: 'system', content: systemPrompt },
