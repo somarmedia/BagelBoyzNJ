@@ -131,7 +131,7 @@
         <div class="feature-card animate-on-scroll">
           <div class="feature-icon"><i class="fas fa-heart"></i></div>
           <h3>Family Owned</h3>
-          <p>Founded by Robert and Jessica Ploussas, Bagel Boyz is a family business built on passion and community.</p>
+          <p>Founded by a husband-and-wife team, Bagel Boyz is a family business built on passion and community.</p>
         </div>
       </div>
     </div>

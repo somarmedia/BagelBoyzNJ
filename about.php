@@ -3,9 +3,9 @@
 <head>
   <?php include 'includes/head.php'; ?>
   <title>Our Story | Bagel Boyz NJ - From Engineering to Bagels</title>
-  <meta name="description" content="The story of Bagel Boyz NJ. How Robert and Jessica Ploussas turned a lifelong dream into Hazlet's favorite bagel shop. Family owned since 2021.">
+  <meta name="description" content="The story of Bagel Boyz NJ. How a husband-and-wife team turned a lifelong dream into Hazlet's favorite family-owned bagel shop. Est. 2021.">
   <meta property="og:title" content="Our Story | Bagel Boyz NJ">
-  <meta property="og:description" content="From an MTA engineering career to Hazlet's best bagel shop. The Bagel Boyz origin story.">
+  <meta property="og:description" content="A family dream turned into Hazlet's best bagel shop. The Bagel Boyz origin story.">
   <link rel="canonical" href="https://bagelboyznj.com/about.php">
 </head>
 <body>
@@ -25,12 +25,12 @@
         <div class="story-content">
           <span class="section-label">How It Started</span>
           <h2>A Dream, A Pandemic, and a Bagel Shop</h2>
-          <p>Robert Ploussas spent years as a civil engineer for the Metropolitan Transit Authority in New York — designing infrastructure, managing projects, solving complex problems. But the whole time, there was something else on his mind.</p>
-          <p>Robert had worked in bagel shops before his engineering career, and the dream of opening his own shop never left him. Then 2020 happened.</p>
+          <p>Our founder Rob spent years as a civil engineer for the Metropolitan Transit Authority in New York — designing infrastructure, managing projects, solving complex problems. But the whole time, there was something else on his mind.</p>
+          <p>Rob had worked in bagel shops before his engineering career, and the dream of opening his own shop never left him. Then 2020 happened.</p>
           <div class="story-quote">
             "I always wanted to open a bagel shop. As difficult as the last year had been for all of us, I believe that the pandemic offered us opportunities to look at life differently."
           </div>
-          <p>When Robert was laid off from the MTA during the pandemic, he didn't look for another engineering job. Instead, he and his wife Jessica — Holmdel residents who know this community inside and out — took the leap.</p>
+          <p>When Rob was laid off from the MTA during the pandemic, he didn't look for another engineering job. Instead, he and his wife Jess — local residents who know this community inside and out — took the leap together as a family.</p>
         </div>
         <div style="background: linear-gradient(135deg, var(--bb-gold), var(--bb-gold-dark)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; height: 400px;">
           <img src="img/BBLOGO.1000px.png" alt="Bagel Boyz" style="max-width: 70%; filter: brightness(1.1);">
@@ -47,7 +47,7 @@
           <span class="section-label" style="color: var(--bb-gold-light);">Building the Dream</span>
           <h2>694 Holmdel Rd</h2>
           <p>In January 2021, word hit the neighborhood: the former Holmdel Deli & Groceries at 694 Holmdel Rd was being transformed into a bagel shop. The community response on Facebook was immediate and enthusiastic.</p>
-          <p>Robert and Jessica completely renovated the space into a sleek, open-concept shop with floor-to-ceiling windows. They designed it with room for socially-distanced lines — a sign of the times, but also a commitment to doing things right from day one.</p>
+          <p>Rob and Jess completely renovated the space into a sleek, open-concept shop with floor-to-ceiling windows. They designed it with room for socially-distanced lines — a sign of the times, but also a commitment to doing things right from day one.</p>
           <p>On <strong>April 22, 2021</strong>, Bagel Boyz opened its doors for the first time. The line wrapped around the building.</p>
         </div>
         <div style="direction: ltr; background: linear-gradient(135deg, rgba(212,144,30,0.2), rgba(212,144,30,0.05)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; padding: var(--space-xl);">
@@ -68,7 +68,7 @@
         <div class="story-content">
           <span class="section-label">Growing Up</span>
           <h2>Two Locations, One Family</h2>
-          <p>Bagel Boyz took off fast. The combination of Robert's experience, quality ingredients (Boar's Head meats, 15+ bagel varieties, 13 cream cheese flavors), and genuine community feel turned first-time visitors into regulars.</p>
+          <p>Bagel Boyz took off fast. The combination of real bagel-making experience, quality ingredients (Boar's Head meats, 15+ bagel varieties, 13 cream cheese flavors), and that genuine family-run feel turned first-time visitors into regulars.</p>
           <p>The success led to a second location at <strong>1352 NJ-36 in Airport Plaza</strong>, giving even more of Hazlet and the surrounding towns — Holmdel, Keyport, Middletown, Aberdeen — easy access to fresh bagels every morning.</p>
           <p>Today, Bagel Boyz is recognized as one of the best bagel shops in Monmouth County. Brooklyn transplants say our bagels rival what they grew up with. That's the highest compliment a Jersey bagel shop can get.</p>
         </div>
@@ -207,7 +207,7 @@
             <i class="fas fa-chevron-down"></i>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Bagel Boyz was founded by Robert and Jessica Ploussas, Holmdel residents who opened the first location in April 2021. Robert is a former civil engineer for the MTA who followed his lifelong dream of opening a bagel shop.</div>
+            <div class="faq-answer-inner">Bagel Boyz is a family-owned business founded by a husband-and-wife team who are longtime local residents. They opened the first location in April 2021, turning a lifelong dream into Hazlet's favorite bagel shop. It's been a family affair from day one.</div>
           </div>
         </div>
         <div class="faq-item">
@@ -249,7 +249,7 @@
       {"@type": "Question", "name": "Does Bagel Boyz do catering?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. We cater events of all sizes including office meetings, birthday parties, corporate events, and holiday gatherings. We offer bagel platters, breakfast sandwich trays, deli spreads, coffee service, and custom packages."}},
       {"@type": "Question", "name": "Can I order Bagel Boyz for delivery?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, you can order through DoorDash or Grubhub for delivery from both locations. You can also call ahead for pickup."}},
       {"@type": "Question", "name": "What is SPK?", "acceptedAnswer": {"@type": "Answer", "text": "SPK stands for Salt, Pepper, Ketchup — the classic New Jersey condiment combination for breakfast sandwiches, especially Taylor Ham egg and cheese."}},
-      {"@type": "Question", "name": "Who owns Bagel Boyz?", "acceptedAnswer": {"@type": "Answer", "text": "Bagel Boyz was founded by Robert and Jessica Ploussas, Holmdel residents who opened the first location in April 2021. Robert is a former MTA civil engineer who followed his lifelong dream of opening a bagel shop."}},
+      {"@type": "Question", "name": "Who owns Bagel Boyz?", "acceptedAnswer": {"@type": "Answer", "text": "Bagel Boyz is a family-owned business founded by a husband-and-wife team who are longtime local residents. They opened the first location in April 2021, turning a lifelong dream into Hazlet's favorite bagel shop."}},
       {"@type": "Question", "name": "Where can I get the best bagels near Hazlet NJ?", "acceptedAnswer": {"@type": "Answer", "text": "Bagel Boyz is consistently rated as one of the best bagel shops in Hazlet and Monmouth County, serving fresh boiled-and-baked bagels with 15+ varieties and Boar's Head deli meats at both Hazlet locations."}}
     ]
   }

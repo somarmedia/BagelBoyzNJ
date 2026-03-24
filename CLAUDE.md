@@ -1,7 +1,7 @@
 # BagelBoyz NJ
 
 ## Project Overview
-Website and social media automation for **Bagel Boyz NJ** — a family-owned bagel shop in Hazlet, NJ with two locations. Founded in 2021 by Robert and Jessica Ploussas.
+Website and social media automation for **Bagel Boyz NJ** — a family-owned bagel shop in Hazlet, NJ with two locations. Founded in 2021 by Rob and Jess.
 
 **Locations:**
 - 694 Holmdel Rd, Hazlet, NJ 07730 — (732) 646-4455

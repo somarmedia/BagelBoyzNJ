@@ -209,7 +209,7 @@ BRAND FACTS (use naturally, don't force):
 - 15+ bagel varieties including gluten-free
 - 13 cream cheese flavors
 - Boar's Head deli meats
-- Founded 2021 by Robert & Jessica Ploussas
+- Founded 2021, family-owned and operated
 - Instagram: @bagelboyznj | Facebook: BagelBoyzNJ
 - Website: bagelboyznj.com
 
