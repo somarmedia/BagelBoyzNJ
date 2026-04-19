@@ -4,3 +4,4 @@ backend/uploads/
 backend/logs/
 social-feed.json
 *.log
+php/smtp-config.php
