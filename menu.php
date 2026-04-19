@@ -22,7 +22,7 @@
         "name": "Bagels",
         "hasMenuItem": [
           {"@type": "MenuItem", "name": "Single Bagel", "offers": {"@type": "Offer", "price": "1.50", "priceCurrency": "USD"}},
-          {"@type": "MenuItem", "name": "Bagel with Cream Cheese", "offers": {"@type": "Offer", "price": "3.60", "priceCurrency": "USD"}},
+          {"@type": "MenuItem", "name": "Bagel with Cream Cheese", "offers": {"@type": "Offer", "price": "3.75", "priceCurrency": "USD"}},
           {"@type": "MenuItem", "name": "Dozen Bagels", "offers": {"@type": "Offer", "price": "16.95", "priceCurrency": "USD"}}
         ]
       },
@@ -30,8 +30,8 @@
         "@type": "MenuSection",
         "name": "Breakfast Sandwiches",
         "hasMenuItem": [
-          {"@type": "MenuItem", "name": "Egg & Cheese", "offers": {"@type": "Offer", "price": "5.79", "priceCurrency": "USD"}},
-          {"@type": "MenuItem", "name": "Egg with Meat & Cheese", "offers": {"@type": "Offer", "price": "7.95", "priceCurrency": "USD"}}
+          {"@type": "MenuItem", "name": "Egg & Cheese", "offers": {"@type": "Offer", "price": "5.99", "priceCurrency": "USD"}},
+          {"@type": "MenuItem", "name": "Egg with Meat & Cheese", "offers": {"@type": "Offer", "price": "8.50", "priceCurrency": "USD"}}
         ]
       }
     ]
@@ -118,55 +118,55 @@
         <div class="menu-items">
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Butter</div></div>
-            <div class="menu-item-price">$2.80</div>
+            <div class="menu-item-price">$3.25</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Cream Cheese</div></div>
-            <div class="menu-item-price">$3.60</div>
+            <div class="menu-item-price">$3.75</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Gourmet Cream Cheese</div></div>
-            <div class="menu-item-price">$4.60</div>
+            <div class="menu-item-price">$4.68</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Specialty Bagel w/ Butter</div></div>
-            <div class="menu-item-price">$3.70</div>
+            <div class="menu-item-price">$4.15</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Specialty Bagel w/ Cream Cheese</div></div>
-            <div class="menu-item-price">$4.20</div>
+            <div class="menu-item-price">$4.60</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Specialty Bagel w/ Gourmet Cream Cheese</div></div>
-            <div class="menu-item-price">$5.20</div>
+            <div class="menu-item-price">$5.60</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Specialty Bagel w/ Lox Spread</div></div>
-            <div class="menu-item-price">$7.30</div>
+            <div class="menu-item-price">$7.49</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Jelly</div></div>
-            <div class="menu-item-price">$3.10</div>
+            <div class="menu-item-price">$3.49</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Butter &amp; Jelly</div></div>
-            <div class="menu-item-price">$3.45</div>
+            <div class="menu-item-price">$3.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Peanut Butter</div></div>
-            <div class="menu-item-price">$3.60</div>
+            <div class="menu-item-price">$3.89</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Cream Cheese &amp; Jelly</div></div>
-            <div class="menu-item-price">$3.80</div>
+            <div class="menu-item-price">$3.95</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Peanut Butter &amp; Jelly</div></div>
-            <div class="menu-item-price">$3.80</div>
+            <div class="menu-item-price">$4.05</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Lox Spread</div></div>
-            <div class="menu-item-price">$6.29</div>
+            <div class="menu-item-price">$6.79</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Bagel w/ Sliced Lox, Cream Cheese, L/T/O</div></div>
@@ -197,26 +197,26 @@
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Eggs &amp; Cheese</div></div>
-            <div class="menu-item-price">$5.79</div>
+            <div class="menu-item-price">$5.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Eggs w/ Choice of Meat</div>
             </div>
-            <div class="menu-item-price">$7.45</div>
+            <div class="menu-item-price">$8.00</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Eggs w/ Choice of Meat &amp; Cheese</div>
             </div>
-            <div class="menu-item-price">$7.95</div>
+            <div class="menu-item-price">$8.50</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">OBO</div>
               <p class="menu-item-desc">Egg, cheese &amp; hash brown</p>
             </div>
-            <div class="menu-item-price">$6.95</div>
+            <div class="menu-item-price">$8.25</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
@@ -241,39 +241,39 @@
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">BLT</div></div>
-            <div class="menu-item-price">$6.99</div>
+            <div class="menu-item-price">$7.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Grilled Cheese</div></div>
-            <div class="menu-item-price">$5.99</div>
+            <div class="menu-item-price">$6.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Healthy Turkey</div>
               <p class="menu-item-desc">Egg whites, Oven Gold Turkey, spinach &amp; choice of cheese</p>
             </div>
-            <div class="menu-item-price">$8.60</div>
+            <div class="menu-item-price">$9.35</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Healthy Chicken</div>
               <p class="menu-item-desc">Egg whites, EverRoast Chicken, spinach &amp; avocado</p>
             </div>
-            <div class="menu-item-price">$8.99</div>
+            <div class="menu-item-price">$9.35</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Healthy Healthy</div>
               <p class="menu-item-desc">Egg whites, turkey bacon, cheese &amp; avocado</p>
             </div>
-            <div class="menu-item-price">$8.99</div>
+            <div class="menu-item-price">$9.35</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">RJ Special</div>
               <p class="menu-item-desc">Egg whites, turkey, pepper jack cheese, bacon &amp; spinach with chipotle mayo and hot sauce</p>
             </div>
-            <div class="menu-item-price">$8.99</div>
+            <div class="menu-item-price">$9.35</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
@@ -297,47 +297,47 @@
         <div class="menu-items">
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Eggs</div></div>
-            <div class="menu-item-price">$7.29</div>
+            <div class="menu-item-price">$7.79</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Eggs w/ Cheese</div></div>
-            <div class="menu-item-price">$7.99</div>
+            <div class="menu-item-price">$8.49</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Eggs w/ Choice of Meat</div></div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.49</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">3 Eggs w/ Choice of Meat &amp; Cheese</div></div>
-            <div class="menu-item-price">$10.29</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Veggie</div>
               <p class="menu-item-desc">Onions, peppers, tomatoes &amp; spinach</p>
             </div>
-            <div class="menu-item-price">$10.20</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Greek</div>
               <p class="menu-item-desc">Spinach, feta, onion &amp; tomatoes</p>
             </div>
-            <div class="menu-item-price">$10.20</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Western</div>
               <p class="menu-item-desc">Ham, cheese, peppers &amp; onions</p>
             </div>
-            <div class="menu-item-price">$10.20</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Cheesesteak</div>
               <p class="menu-item-desc">Steak, cheese, peppers &amp; onions</p>
             </div>
-            <div class="menu-item-price">$10.99</div>
+            <div class="menu-item-price">$11.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
@@ -371,57 +371,57 @@
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Roast Beef</div></div>
-            <div class="menu-item-price">$8.99</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$18.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Pastrami</div></div>
-            <div class="menu-item-price">$8.99</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$18.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Pepperoni</div></div>
-            <div class="menu-item-price">$7.99</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$14.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head EverRoast Chicken</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$14.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Blazing Buffalo Chicken</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$14.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Oven Gold Turkey</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$14.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Maple Honey Turkey</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$15.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Genoa Salami</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$14.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Deluxe Ham</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$10.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$15.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Cheese (American)</div></div>
-            <div class="menu-item-price">$6.50</div>
+            <div class="menu-item-price">$6.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$11.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Boar's Head Cheese (Others)</div></div>
-            <div class="menu-item-price">$7.50</div>
+            <div class="menu-item-price">$7.99</div>
             <div class="menu-item-price" style="min-width: 80px;">$12.99</div>
           </div>
         </div>
@@ -433,7 +433,7 @@
           <div class="menu-category-icon">&#129367;</div>
           <div>
             <h2>Salad Sandwiches</h2>
-            <p style="margin:0; color: var(--bb-gray);">Served on a bagel. Roll or wrap add $0.75.</p>
+            <p style="margin:0; color: var(--bb-gray);">Served on a bagel. Roll, wrap, white or wheat add $0.75. Rye bread add $1.00.</p>
           </div>
         </div>
         <div class="menu-items" style="display: grid; grid-template-columns: 1fr;">
@@ -442,18 +442,18 @@
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Egg Salad</div></div>
-            <div class="menu-item-price">$6.99</div>
-            <div class="menu-item-price" style="min-width: 80px;">$4.99</div>
+            <div class="menu-item-price">$7.99</div>
+            <div class="menu-item-price" style="min-width: 80px;">$5.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Tuna Salad</div></div>
-            <div class="menu-item-price">$8.49</div>
-            <div class="menu-item-price" style="min-width: 80px;">$6.99</div>
+            <div class="menu-item-price">$9.35</div>
+            <div class="menu-item-price" style="min-width: 80px;">$7.99</div>
           </div>
           <div class="menu-item" style="display: grid; grid-template-columns: 1fr auto auto;">
             <div class="menu-item-info"><div class="menu-item-name">Chicken Salad</div></div>
-            <div class="menu-item-price">$8.49</div>
-            <div class="menu-item-price" style="min-width: 80px;">$6.99</div>
+            <div class="menu-item-price">$9.35</div>
+            <div class="menu-item-price" style="min-width: 80px;">$7.99</div>
           </div>
         </div>
       </div>
@@ -463,7 +463,7 @@
         <div class="menu-category-header">
           <div class="menu-category-icon">&#127790;</div>
           <div>
-            <h2>Wraps &mdash; $9.99</h2>
+            <h2>Wraps &mdash; $10.99</h2>
           </div>
         </div>
         <div class="menu-items">
@@ -472,69 +472,69 @@
               <div class="menu-item-name">Wrap 1: Ham &amp; Swiss</div>
               <p class="menu-item-desc">Domestic ham &amp; Swiss cheese topped with tomato, lettuce, bacon &amp; mayo</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 2: Chicken, Tuna, or Egg Salad</div>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 3: Italian</div>
               <p class="menu-item-desc">Genoa salami, capicola ham, pepperoni, provolone, tomato, lettuce, onion, oil &amp; vinegar</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 4: Turkey or Chicken</div>
               <p class="menu-item-desc">Ovengold Turkey or EverRoast Chicken w/ bacon, avocado, spinach &amp; mayo</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 5: Buffalo Chicken</div>
               <p class="menu-item-desc">Buffalo EverRoast Chicken, pepper jack cheese w/ ranch dressing</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 6: Grilled Chicken</div>
               <p class="menu-item-desc">Grilled chicken, spinach, provolone &amp; onions</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 7: Turkey Club</div>
               <p class="menu-item-desc">Ovengold Turkey, American cheese, bacon, lettuce, tomato &amp; mayo</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 8: Chicken Fajita</div>
               <p class="menu-item-desc">Onions, peppers, grilled chicken &amp; mozzarella cheese</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 9: Greek</div>
               <p class="menu-item-desc">Grilled marinated chicken, lettuce, tomato, onion &amp; feta cheese with drizzled tzatziki</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Wrap 10: Hot Roast Beef</div>
               <p class="menu-item-desc">Hot roast beef with American cheese, grilled onions &amp; grilled peppers</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
         </div>
       </div>
@@ -544,7 +544,7 @@
         <div class="menu-category-header">
           <div class="menu-category-icon">&#11088;</div>
           <div>
-            <h2>Specialty Sandwiches &mdash; $9.99</h2>
+            <h2>Specialty Sandwiches &mdash; $10.99</h2>
             <p style="margin:0; color: var(--bb-gray);">All served on your choice of bagel. Roll or wrap add $0.75.</p>
           </div>
         </div>
@@ -554,91 +554,91 @@
               <div class="menu-item-name">Bagel Boyz Sloppy</div>
               <p class="menu-item-desc">Grilled Ovengold Turkey &amp; roast beef w/ choice of cheese, cole slaw &amp; Russian dressing</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Tommy Pastrami</div>
               <p class="menu-item-desc">Pastrami w/ choice of cheese (hot or cold), cole slaw &amp; Russian dressing</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Kevin Special</div>
               <p class="menu-item-desc">Grilled chicken cutlet, bacon, pepper jack cheese, a fried egg, jalapenos with chipotle mayo</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Alex's Delight</div>
               <p class="menu-item-desc">Turkey, bacon, melted muenster cheese &amp; Russian dressing</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Veggie</div>
               <p class="menu-item-desc">Grilled onions, peppers, spinach, lettuce, tomato &amp; avocado</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Peter Style</div>
               <p class="menu-item-desc">Roast beef, muenster cheese &amp; onions with horseradish sauce</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Bagel Boyz Cheesesteak</div>
               <p class="menu-item-desc">Cheesesteak w/ peppers &amp; onions</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Noah's Italian</div>
               <p class="menu-item-desc">Genoa salami, cappy ham, pepperoni, provolone, lettuce, tomato &amp; onions, oil &amp; vinegar</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Turkey or Chicken Special</div>
               <p class="menu-item-desc">Ovengold Turkey or EverRoast Chicken w/ choice of cheese, bacon, lettuce, tomato &amp; onions</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Hot &amp; Spicy</div>
               <p class="menu-item-desc">Blazing Buffalo Chicken, pepper jack cheese, hot sliced cherry peppers &amp; jalapenos</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">The Classic</div>
               <p class="menu-item-desc">Turkey, choice of cheese w/ onions, lettuce &amp; tomato topped with oil &amp; vinegar</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Alexander the Great</div>
               <p class="menu-item-desc">Grilled turkey, melted Swiss cheese, honey mustard sauce with lettuce &amp; tomatoes</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info">
               <div class="menu-item-name">Grand Supreme</div>
               <p class="menu-item-desc">EverRoast Chicken, Ovengold Turkey, Genoa salami, pepperoni, ham, bacon, lettuce, tomato, onions &amp; balsamic dressing</p>
             </div>
-            <div class="menu-item-price">$9.99</div>
+            <div class="menu-item-price">$10.99</div>
           </div>
         </div>
       </div>
@@ -653,7 +653,7 @@
         </div>
         <div class="menu-items" style="display: grid; grid-template-columns: 1fr 1fr;">
           <div class="menu-item">
-            <div class="menu-item-info"><div class="menu-item-name">Tomato</div></div>
+            <div class="menu-item-info"><div class="menu-item-name">Lettuce</div></div>
             <div class="menu-item-price">$0.50</div>
           </div>
           <div class="menu-item">
@@ -661,7 +661,7 @@
             <div class="menu-item-price">$1.75</div>
           </div>
           <div class="menu-item">
-            <div class="menu-item-info"><div class="menu-item-name">Onions</div></div>
+            <div class="menu-item-info"><div class="menu-item-name">Tomato</div></div>
             <div class="menu-item-price">$0.50</div>
           </div>
           <div class="menu-item">
@@ -669,7 +669,7 @@
             <div class="menu-item-price">$1.00</div>
           </div>
           <div class="menu-item">
-            <div class="menu-item-info"><div class="menu-item-name">Peppers</div></div>
+            <div class="menu-item-info"><div class="menu-item-name">Onions</div></div>
             <div class="menu-item-price">$0.50</div>
           </div>
           <div class="menu-item">
@@ -677,12 +677,16 @@
             <div class="menu-item-price">$1.50</div>
           </div>
           <div class="menu-item">
-            <div class="menu-item-info"><div class="menu-item-name">Meat</div></div>
-            <div class="menu-item-price">$2.50</div>
+            <div class="menu-item-info"><div class="menu-item-name">Peppers</div></div>
+            <div class="menu-item-price">$0.50</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Cheese</div></div>
-            <div class="menu-item-price">$0.75</div>
+            <div class="menu-item-price">$1.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info"><div class="menu-item-name">Meat</div></div>
+            <div class="menu-item-price">$3.00</div>
           </div>
         </div>
       </div>
@@ -698,11 +702,15 @@
         <div class="menu-items">
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Butter</div></div>
-            <div class="menu-item-price">$0.50</div>
+            <div class="menu-item-price">$0.75</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Cream Cheese</div></div>
-            <div class="menu-item-price">$0.75</div>
+            <div class="menu-item-price">$1.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-info"><div class="menu-item-name">Gourmet Cream Cheese</div></div>
+            <div class="menu-item-price">$1.25</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Coleslaw</div></div>
@@ -710,15 +718,15 @@
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Sausage, Turkey Bacon, Bacon, or Pork Roll</div></div>
-            <div class="menu-item-price">$2.50</div>
+            <div class="menu-item-price">$3.00</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">Home Fries</div></div>
-            <div class="menu-item-price">$3.50</div>
+            <div class="menu-item-price">$3.99</div>
           </div>
           <div class="menu-item">
             <div class="menu-item-info"><div class="menu-item-name">French Fries</div></div>
-            <div class="menu-item-price">$3.50</div>
+            <div class="menu-item-price">$3.99</div>
           </div>
         </div>
       </div>
