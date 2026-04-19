@@ -49,7 +49,17 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$config = require __DIR__ . '/smtp-config.php';
+$configPath = __DIR__ . '/smtp-config.php';
+if (!file_exists($configPath)) {
+    error_log('Catering form: smtp-config.php missing at ' . $configPath);
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Email service is not configured yet. Please call (732) 646-4455 or email catering@bagelboyznj.com directly.'
+    ]);
+    exit;
+}
+$config = require $configPath;
 
 $subject = "Catering Inquiry from {$name} - {$guestCount} guests on {$eventDate}";
 

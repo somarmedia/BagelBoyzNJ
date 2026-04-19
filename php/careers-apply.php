@@ -43,7 +43,17 @@ $availability = htmlspecialchars(strip_tags(trim($_POST['availability'])), ENT_Q
 $experience = htmlspecialchars(strip_tags(trim($_POST['experience'] ?? '')), ENT_QUOTES, 'UTF-8');
 $startDate = htmlspecialchars(strip_tags(trim($_POST['start_date'] ?? '')), ENT_QUOTES, 'UTF-8');
 
-$config = require __DIR__ . '/smtp-config.php';
+$configPath = __DIR__ . '/smtp-config.php';
+if (!file_exists($configPath)) {
+    error_log('Careers form: smtp-config.php missing at ' . $configPath);
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Application service is not configured yet. Please stop by either location or call (732) 646-4455.'
+    ]);
+    exit;
+}
+$config = require $configPath;
 
 $subject = "Job Application from {$name} - {$position}";
 
