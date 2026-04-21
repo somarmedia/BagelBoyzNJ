@@ -104,7 +104,7 @@ BagelBoyz/
 ### Website
 No build step — edit HTML/CSS/JS files directly. Preview by opening index.html in a browser.
 
-Deploy to Hostinger: Upload files via FTP/SFTP or Hostinger file manager.
+**Deploy:** Hostinger auto-pulls from `main` (configured in hPanel → Git). `git push origin main` and changes are live within seconds. Files in `.gitignore` (notably `php/smtp-config.php`) don't auto-deploy — upload those manually via File Manager. **Full process and troubleshooting: see [DEPLOY.md](DEPLOY.md).**
 
 ### Backend (Social Automation)
 ```bash
