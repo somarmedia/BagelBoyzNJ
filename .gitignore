@@ -5,3 +5,4 @@ backend/logs/
 social-feed.json
 *.log
 php/smtp-config.php
+bagelbistro/php/smtp-config.php
