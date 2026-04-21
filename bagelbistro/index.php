@@ -147,17 +147,17 @@
         <div class="feature-card animate-on-scroll" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(200,16,46,0.3);">
           <div class="feature-icon" style="background: rgba(200,16,46,0.15);">&#127869;</div>
           <h3 style="color: var(--bb-cream);">Bistro Hero</h3>
-          <p style="color: var(--bb-cream-dark);">3 eggs, Taylor Ham, bacon, potatoes, peppers, onions and cheese. Our signature breakfast — $5.75.</p>
+          <p style="color: var(--bb-cream-dark);">3 eggs, Taylor Ham, bacon, potatoes, peppers, onions and cheese. Our signature breakfast — $8.95.</p>
         </div>
         <div class="feature-card animate-on-scroll" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(200,16,46,0.3);">
           <div class="feature-icon" style="background: rgba(200,16,46,0.15);">&#127828;</div>
           <h3 style="color: var(--bb-cream);">Bistro Burger</h3>
-          <p style="color: var(--bb-cream-dark);">Half-pound patty, Taylor Ham, bacon and American cheese. A Hillsborough lunch legend — $7.95.</p>
+          <p style="color: var(--bb-cream-dark);">Half-pound patty, Taylor Ham, bacon and American cheese. A Hillsborough lunch legend — $11.95.</p>
         </div>
         <div class="feature-card animate-on-scroll" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(200,16,46,0.3);">
           <div class="feature-icon" style="background: rgba(200,16,46,0.15);">&#129386;</div>
           <h3 style="color: var(--bb-cream);">Italiano Panini</h3>
-          <p style="color: var(--bb-cream-dark);">Grilled chicken, roasted peppers, fresh mozzarella and pesto, pressed and melty — $7.95.</p>
+          <p style="color: var(--bb-cream-dark);">Grilled chicken, roasted peppers, fresh mozzarella and pesto, pressed and melty — $11.25.</p>
         </div>
       </div>
       <div class="text-center" style="margin-top: var(--space-xl);">

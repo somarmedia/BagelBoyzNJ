@@ -132,7 +132,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-question">What's the best breakfast at Bagel Bistro? <i class="fas fa-chevron-down"></i></button>
-          <div class="faq-answer"><div class="faq-answer-inner">The Bistro Hero is the signature — three eggs, Taylor Ham, bacon, potatoes, peppers, onions, and cheese in a wrap for $5.75. Regulars also rave about the Philly Steak &amp; Eggs and the Mr. Protein wrap (5 egg whites and grilled turkey).</div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">The Bistro Hero is the signature — three eggs, Taylor Ham, bacon, potatoes, peppers, onions, and cheese in a wrap for $8.95. Regulars also rave about the Philly Steak &amp; Eggs and the Mr. Protein wrap (5 egg whites and grilled turkey).</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-question">Who owns Bagel Bistro? <i class="fas fa-chevron-down"></i></button>
@@ -171,7 +171,7 @@
       {"@type": "Question", "name": "Does Bagel Bistro use Boar's Head?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every hero and deli sandwich at Bagel Bistro is built with Boar's Head meats and cheeses including Genoa salami, oven roasted turkey, oven roasted beef, deluxe baked ham, and pastrami."}},
       {"@type": "Question", "name": "Does Bagel Bistro do catering?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We do bagel platters, breakfast sandwich trays, deli platters, and custom packages for offices, parties, and events around Hillsborough and Somerset County."}},
       {"@type": "Question", "name": "Can I order Bagel Bistro for delivery?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Bagel Bistro is on DoorDash for delivery. You can also call ahead at (908) 359-7929 for pickup."}},
-      {"@type": "Question", "name": "What is the best breakfast at Bagel Bistro?", "acceptedAnswer": {"@type": "Answer", "text": "The Bistro Hero — three eggs, Taylor Ham, bacon, potatoes, peppers, onions, and cheese in a wrap — is the signature order at $5.75."}},
+      {"@type": "Question", "name": "What is the best breakfast at Bagel Bistro?", "acceptedAnswer": {"@type": "Answer", "text": "The Bistro Hero — three eggs, Taylor Ham, bacon, potatoes, peppers, onions, and cheese in a wrap — is the signature order at $8.95."}},
       {"@type": "Question", "name": "Who owns Bagel Bistro in Hillsborough?", "acceptedAnswer": {"@type": "Answer", "text": "Bagel Bistro is run by Jimmy and his team, long-time Hillsborough locals who have made the shop a neighborhood fixture."}},
       {"@type": "Question", "name": "Where can I get the best bagels near Hillsborough NJ?", "acceptedAnswer": {"@type": "Answer", "text": "Bagel Bistro at 450 Amwell Rd is consistently rated one of the best bagel shops in Hillsborough and Somerset County, known for fresh boiled-and-baked bagels and a full Boar's Head deli counter."}}
     ]
