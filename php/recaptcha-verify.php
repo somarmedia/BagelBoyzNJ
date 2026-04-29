@@ -1,14 +1,26 @@
 <?php
 /**
- * Bagel Boyz NJ - reCAPTCHA v3 token verification.
+ * Bagel Boyz NJ - reCAPTCHA Enterprise token verification.
  *
- * Returns ['ok' => bool, 'message' => string].
- * On success the token is valid AND the score meets the configured threshold.
+ * Calls the Enterprise assessments API:
+ *   https://recaptchaenterprise.googleapis.com/v1/projects/{PROJECT_ID}/assessments?key={API_KEY}
+ *
+ * Returns ['ok' => bool, 'message' => string, ...].
+ * On success the token is valid, action matches, AND the score meets the configured threshold.
  */
 
+const BB_RECAPTCHA_SITE_KEY = '6LeYldAsAAAAAL_JmEU0vho10-yvPB7D2WSm9c8P';
+
 function bb_verify_recaptcha($token, $expectedAction, $config) {
-    if (empty($config['recaptcha_secret']) || $config['recaptcha_secret'] === 'YOUR_RECAPTCHA_V3_SECRET_KEY') {
-        error_log('reCAPTCHA: secret not configured — skipping verification');
+    $apiKey    = $config['recaptcha_api_key'] ?? '';
+    $projectId = $config['recaptcha_project_id'] ?? '';
+
+    $unconfigured = empty($apiKey) || empty($projectId)
+        || $apiKey === 'YOUR_GCP_API_KEY_RESTRICTED_TO_RECAPTCHA_ENTERPRISE'
+        || $projectId === 'YOUR_GCP_PROJECT_ID';
+
+    if ($unconfigured) {
+        error_log('reCAPTCHA: project_id/api_key not configured — skipping verification');
         return ['ok' => true, 'message' => 'skipped (not configured)'];
     }
 
@@ -18,20 +30,26 @@ function bb_verify_recaptcha($token, $expectedAction, $config) {
 
     $minScore = isset($config['recaptcha_min_score']) ? (float) $config['recaptcha_min_score'] : 0.5;
 
-    $payload = http_build_query([
-        'secret'   => $config['recaptcha_secret'],
-        'response' => $token,
-        'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+    $url = "https://recaptchaenterprise.googleapis.com/v1/projects/" . rawurlencode($projectId) . "/assessments?key=" . rawurlencode($apiKey);
+    $payload = json_encode([
+        'event' => [
+            'token'          => $token,
+            'expectedAction' => $expectedAction,
+            'siteKey'        => BB_RECAPTCHA_SITE_KEY,
+            'userIpAddress'  => $_SERVER['REMOTE_ADDR'] ?? '',
+        ],
     ]);
 
-    $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
+    $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
     $response = curl_exec($ch);
-    $curlErr = curl_error($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlErr  = curl_error($ch);
     curl_close($ch);
 
     if ($response === false) {
@@ -41,24 +59,31 @@ function bb_verify_recaptcha($token, $expectedAction, $config) {
 
     $data = json_decode($response, true);
     if (!is_array($data)) {
-        error_log('reCAPTCHA: invalid JSON from Google - ' . $response);
+        error_log('reCAPTCHA: invalid JSON from Google - ' . substr($response, 0, 500));
         return ['ok' => false, 'message' => 'Could not verify your submission. Please try again.'];
     }
 
-    if (empty($data['success'])) {
-        $errors = isset($data['error-codes']) ? implode(',', $data['error-codes']) : 'unknown';
-        error_log('reCAPTCHA: verification failed - ' . $errors);
+    if ($httpCode !== 200 || isset($data['error'])) {
+        $msg = $data['error']['message'] ?? "HTTP {$httpCode}";
+        error_log('reCAPTCHA Enterprise API error: ' . $msg);
         return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.', 'google_response' => $data];
     }
 
-    if (!empty($expectedAction) && isset($data['action']) && $data['action'] !== $expectedAction) {
-        error_log("reCAPTCHA: action mismatch (got {$data['action']}, expected {$expectedAction})");
+    $tokenProps = $data['tokenProperties'] ?? [];
+    if (empty($tokenProps['valid'])) {
+        $reason = $tokenProps['invalidReason'] ?? 'unknown';
+        error_log('reCAPTCHA: invalid token - ' . $reason);
         return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.', 'google_response' => $data];
     }
 
-    $score = isset($data['score']) ? (float) $data['score'] : 0.0;
+    if (!empty($expectedAction) && isset($tokenProps['action']) && $tokenProps['action'] !== $expectedAction) {
+        error_log("reCAPTCHA: action mismatch (got {$tokenProps['action']}, expected {$expectedAction})");
+        return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.', 'google_response' => $data];
+    }
+
+    $score = isset($data['riskAnalysis']['score']) ? (float) $data['riskAnalysis']['score'] : 0.0;
     if ($score < $minScore) {
-        error_log("reCAPTCHA: low score {$score} (min {$minScore}) for action " . ($data['action'] ?? '?'));
+        error_log("reCAPTCHA: low score {$score} (min {$minScore}) for action " . ($tokenProps['action'] ?? '?'));
         return ['ok' => false, 'message' => 'Your submission was flagged as suspicious. If this is a mistake, please call us directly.', 'google_response' => $data];
     }
 
