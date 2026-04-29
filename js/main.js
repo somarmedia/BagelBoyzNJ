@@ -95,6 +95,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // --- reCAPTCHA Enterprise token helper ---
+  function getRecaptchaToken(action) {
+    var siteKey = window.BB_RECAPTCHA_SITE_KEY;
+    if (!siteKey || typeof grecaptcha === 'undefined' || !grecaptcha.enterprise) {
+      return Promise.resolve('');
+    }
+    return new Promise(function (resolve) {
+      grecaptcha.enterprise.ready(function () {
+        grecaptcha.enterprise.execute(siteKey, { action: action })
+          .then(function (token) { resolve(token); })
+          .catch(function () { resolve(''); });
+      });
+    });
+  }
+
   // --- Form Handling ---
   document.querySelectorAll('form[data-ajax]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
@@ -104,11 +119,16 @@ document.addEventListener('DOMContentLoaded', function () {
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
 
-      const formData = new FormData(form);
+      const action = form.getAttribute('data-recaptcha-action') || 'submit';
 
-      fetch(form.action, {
-        method: 'POST',
-        body: formData
+      getRecaptchaToken(action).then(function (token) {
+        const formData = new FormData(form);
+        if (token) formData.append('g-recaptcha-response', token);
+
+        return fetch(form.action, {
+          method: 'POST',
+          body: formData
+        });
       })
         .then(function (res) { return res.json(); })
         .then(function (data) {

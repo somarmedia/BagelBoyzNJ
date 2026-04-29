@@ -14,3 +14,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- reCAPTCHA Enterprise (loaded on every page for accurate risk scoring) -->
+  <script>window.BB_RECAPTCHA_SITE_KEY = '6LeYldAsAAAAAL_JmEU0vho10-yvPB7D2WSm9c8P';</script>
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeYldAsAAAAAL_JmEU0vho10-yvPB7D2WSm9c8P" async defer></script>

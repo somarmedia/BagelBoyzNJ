@@ -16,4 +16,7 @@ return [
     'from_name'  => 'Bagel Boyz NJ Website',
     'catering_to' => 'catering@bagelboyznj.com',
     'careers_to'  => 'jobs@bagelboyznj.com',
+
+    'recaptcha_secret'    => 'YOUR_RECAPTCHA_V3_SECRET_KEY',
+    'recaptcha_min_score' => 0.5,
 ];

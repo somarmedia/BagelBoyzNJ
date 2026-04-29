@@ -200,7 +200,7 @@
         <p class="section-subtitle">Fill out the form below and we'll get back to you within 24 hours with a custom quote.</p>
       </div>
 
-      <form action="php/catering-inquiry.php" method="POST" data-ajax>
+      <form action="php/catering-inquiry.php" method="POST" data-ajax data-recaptcha-action="catering_inquiry">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name *</label>

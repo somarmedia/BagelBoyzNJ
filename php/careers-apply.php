@@ -9,6 +9,7 @@ header('Content-Type: application/json');
 require_once __DIR__ . '/PHPMailer/PHPMailer.php';
 require_once __DIR__ . '/PHPMailer/SMTP.php';
 require_once __DIR__ . '/PHPMailer/Exception.php';
+require_once __DIR__ . '/recaptcha-verify.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -54,6 +55,13 @@ if (!file_exists($configPath)) {
     exit;
 }
 $config = require $configPath;
+
+$captcha = bb_verify_recaptcha($_POST['g-recaptcha-response'] ?? '', 'careers_apply', $config);
+if (!$captcha['ok']) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => $captcha['message']]);
+    exit;
+}
 
 $subject = "Job Application from {$name} - {$position}";
 

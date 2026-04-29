@@ -120,7 +120,7 @@
         <p class="section-subtitle">Fill out the form below and we'll reach out to schedule an interview. You can also stop by either location and ask for the manager.</p>
       </div>
 
-      <form action="php/careers-apply.php" method="POST" data-ajax>
+      <form action="php/careers-apply.php" method="POST" data-ajax data-recaptcha-action="careers_apply">
         <div class="form-row">
           <div class="form-group">
             <label for="applicant-name">Full Name *</label>
