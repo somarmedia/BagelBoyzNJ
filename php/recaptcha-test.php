@@ -22,10 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? 'debug_test';
 
     $result = bb_verify_recaptcha($token, $action, $config);
-    $result['action_sent']   = $action;
-    $result['token_preview'] = $token ? substr($token, 0, 24) . '...(' . strlen($token) . ' chars)' : '(empty)';
-    $result['secret_set']    = !empty($config['recaptcha_secret']) && $config['recaptcha_secret'] !== 'YOUR_RECAPTCHA_V3_SECRET_KEY';
-    $result['min_score']     = $config['recaptcha_min_score'] ?? 0.5;
+    $result['action_sent']     = $action;
+    $result['token_preview']   = $token ? substr($token, 0, 24) . '...(' . strlen($token) . ' chars)' : '(empty)';
+    $result['project_id_set']  = !empty($config['recaptcha_project_id']) && $config['recaptcha_project_id'] !== 'YOUR_GCP_PROJECT_ID';
+    $result['api_key_set']     = !empty($config['recaptcha_api_key']) && $config['recaptcha_api_key'] !== 'YOUR_GCP_API_KEY_RESTRICTED_TO_RECAPTCHA_ENTERPRISE';
+    $result['min_score']       = $config['recaptcha_min_score'] ?? 0.5;
 
     echo json_encode($result, JSON_PRETTY_PRINT);
     exit;
