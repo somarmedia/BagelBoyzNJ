@@ -48,19 +48,19 @@ function bb_verify_recaptcha($token, $expectedAction, $config) {
     if (empty($data['success'])) {
         $errors = isset($data['error-codes']) ? implode(',', $data['error-codes']) : 'unknown';
         error_log('reCAPTCHA: verification failed - ' . $errors);
-        return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.'];
+        return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.', 'google_response' => $data];
     }
 
     if (!empty($expectedAction) && isset($data['action']) && $data['action'] !== $expectedAction) {
         error_log("reCAPTCHA: action mismatch (got {$data['action']}, expected {$expectedAction})");
-        return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.'];
+        return ['ok' => false, 'message' => 'Verification failed. Please refresh and try again.', 'google_response' => $data];
     }
 
     $score = isset($data['score']) ? (float) $data['score'] : 0.0;
     if ($score < $minScore) {
         error_log("reCAPTCHA: low score {$score} (min {$minScore}) for action " . ($data['action'] ?? '?'));
-        return ['ok' => false, 'message' => 'Your submission was flagged as suspicious. If this is a mistake, please call us directly.'];
+        return ['ok' => false, 'message' => 'Your submission was flagged as suspicious. If this is a mistake, please call us directly.', 'google_response' => $data];
     }
 
-    return ['ok' => true, 'message' => 'verified', 'score' => $score];
+    return ['ok' => true, 'message' => 'verified', 'score' => $score, 'google_response' => $data];
 }
