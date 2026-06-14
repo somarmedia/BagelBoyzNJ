@@ -141,23 +141,25 @@ Return ONLY the voiceover text — no labels, no stage directions.`;
 
 // ─── TTS (Text-to-Speech) ──────────────────────────────────
 async function generateTTS(script, outputPath) {
-  // Try HeyGen first
+  // Try HeyGen first (Sammy voice)
   if (process.env.HEYGEN_API_KEY) {
     try {
-      const res = await axios.post('https://api.heygen.com/v2/voice/generate', {
+      const res = await axios.post('https://api.heygen.com/v3/voices/speech', {
         text: script,
-        voice_id: 'Sammy', // Warm, friendly male voice
+        voice_id: process.env.HEYGEN_VOICE_ID || '06e6facd99654b9dbb9308f67bf3a31c', // Sammy
         speed: 1.0
       }, {
         headers: {
-          'Authorization': `Bearer ${process.env.HEYGEN_API_KEY}`,
+          'X-Api-Key': process.env.HEYGEN_API_KEY,
           'Content-Type': 'application/json'
         },
-        responseType: 'arraybuffer',
-        timeout: 30000
+        timeout: 60000
       });
 
-      fs.writeFileSync(outputPath, Buffer.from(res.data));
+      const audioUrl = res.data?.data?.audio_url;
+      if (!audioUrl) throw new Error('No audio_url in HeyGen response');
+      const audioRes = await axios.get(audioUrl, { responseType: 'arraybuffer', timeout: 60000 });
+      fs.writeFileSync(outputPath, Buffer.from(audioRes.data));
       return outputPath;
     } catch (err) {
       console.warn('[VideoEngine] HeyGen TTS failed:', err.message);
