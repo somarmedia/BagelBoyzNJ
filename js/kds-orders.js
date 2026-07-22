@@ -7,7 +7,8 @@
 
   var $ = function (id) { return document.getElementById(id); };
 
-  var state = { from: null, to: null, status: 'all', q: '', page: 1, lastPayload: null };
+  var state = { from: null, to: null, status: 'all', q: '', page: 1,
+                location: 'all', showStore: true, lastPayload: null };
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -37,6 +38,28 @@
         return d;
       });
     });
+  }
+
+  /**
+   * CSS modifier for a store, so each location reads as its own colour on
+   * rows, badges and the totals split. Derived from the id rather than a
+   * hardcoded list, so a third store still gets a stable class.
+   */
+  function locClass(id) {
+    return 'loc-' + String(id || '').replace(/[^a-z0-9_-]/gi, '');
+  }
+
+  /** Slide the toggle indicator under whichever segment is active. */
+  function positionGlider() {
+    var sw = $('loc-switch');
+    var glider = $('loc-glider');
+    if (!sw || !glider) return;
+
+    var active = sw.querySelector('.loc-seg.active');
+    if (!active) return;
+
+    glider.style.width = active.offsetWidth + 'px';
+    glider.style.transform = 'translateX(' + (active.offsetLeft - 4) + 'px)';
   }
 
   /* ---- local YYYY-MM-DD, not UTC (toISOString would shift the day) ---- */
@@ -71,6 +94,7 @@
       '&from=' + encodeURIComponent(state.from) +
       '&to=' + encodeURIComponent(state.to) +
       '&status=' + encodeURIComponent(state.status) +
+      '&location=' + encodeURIComponent(state.location) +
       '&q=' + encodeURIComponent(state.q) +
       '&page=' + state.page;
 
@@ -78,8 +102,10 @@
       .then(function (data) {
         if (!data.success) { toast(data.message || 'Could not load', 'err'); return; }
         state.lastPayload = data;
+        // Only label rows with a store when more than one is in view.
+        state.showStore = data.location === 'all' && (data.locations || []).length > 1;
         $('topbar-loc').textContent = data.location_name || '';
-        renderTotals(data.totals, data.paging);
+        renderTotals(data.totals, data.paging, data.by_location);
         renderList(data.orders);
         renderPaging(data.paging);
       })
@@ -89,13 +115,24 @@
       });
   }
 
-  function renderTotals(t, paging) {
+  function renderTotals(t, paging, byLocation) {
+    var split = '';
+    if (state.showStore && byLocation && byLocation.length > 1) {
+      split = byLocation.map(function (l) {
+        return '<div class="ord-tot split ' + locClass(l.id) + '">' +
+                 '<span class="ord-tot-n">' + esc(l.gross) + '</span>' +
+                 '<span class="ord-tot-l">' + esc(l.name) + ' (' + l.count + ')</span>' +
+               '</div>';
+      }).join('');
+    }
+
     $('ord-totals').innerHTML =
       '<div class="ord-tot"><span class="ord-tot-n">' + t.count + '</span><span class="ord-tot-l">Orders</span></div>' +
       '<div class="ord-tot"><span class="ord-tot-n">' + esc(t.gross) + '</span><span class="ord-tot-l">Gross</span></div>' +
       '<div class="ord-tot"><span class="ord-tot-n">' + esc(t.subtotal) + '</span><span class="ord-tot-l">Subtotal</span></div>' +
       '<div class="ord-tot"><span class="ord-tot-n">' + esc(t.tax) + '</span><span class="ord-tot-l">Tax</span></div>' +
       '<div class="ord-tot"><span class="ord-tot-n">' + esc(t.tips) + '</span><span class="ord-tot-l">Tips</span></div>' +
+      split +
       '<div class="ord-tot-note">Totals exclude cancelled and test orders' +
         (paging.matched !== t.count ? ' (' + paging.matched + ' rows shown)' : '') + '</div>';
   }
@@ -113,12 +150,18 @@
       }
 
       var badges = '';
+      if (state.showStore) {
+        badges += '<span class="ord-store ' + locClass(o.location_id) + '">' +
+                  esc(o.location_name) + '</span>';
+      }
       if (o.is_test) badges += '<span class="flag flag-test">Test</span>';
       badges += o.payment_status === 'paid'
         ? '<span class="flag flag-paid">Paid</span>'
         : '<span class="flag flag-unpaid">' + (o.status === 'cancelled' ? 'Unpaid' : 'Collect') + '</span>';
 
-      html += '<button type="button" class="ord-row s-' + o.status + '" data-id="' + o.id + '">' +
+      var rowCls = 'ord-row s-' + o.status +
+                   (state.showStore ? ' show-store ' + locClass(o.location_id) : '');
+      html += '<button type="button" class="' + rowCls + '" data-id="' + o.id + '">' +
                 '<span class="ord-time">' + esc(o.time) + '</span>' +
                 '<span class="ord-main">' +
                   '<span class="ord-code">' + esc(o.order_code) + '</span>' +
@@ -157,6 +200,9 @@
         $('d-reprint').dataset.id = o.id;
 
         var h = '';
+        h += '<div class="detail-row"><span class="k">Location</span><span>' +
+             '<span class="ord-store ' + locClass(o.location_id) + '">' +
+             esc(o.location_name) + '</span></span></div>';
         h += '<div class="detail-row"><span class="k">Status</span><span>' + esc(o.status_label) + '</span></div>';
         h += '<div class="detail-row"><span class="k">Pickup</span><span>' +
              (o.pickup_type === 'scheduled' ? 'Scheduled' : 'ASAP') + '</span></div>';
@@ -217,7 +263,27 @@
      ========================================================== */
   document.addEventListener('DOMContentLoaded', function () {
     setRange('today');
+    positionGlider();
     load();
+
+    $('loc-switch').addEventListener('click', function (e) {
+      var seg = e.target.closest('.loc-seg');
+      if (!seg || seg.classList.contains('active')) return;
+
+      Array.prototype.forEach.call(this.querySelectorAll('.loc-seg'), function (b) {
+        b.classList.remove('active');
+      });
+      seg.classList.add('active');
+      positionGlider();
+
+      state.location = seg.dataset.loc;
+      state.page = 1;
+      load();
+    });
+
+    // The glider is measured from layout, so it has to be repositioned when
+    // the segments resize.
+    window.addEventListener('resize', positionGlider);
 
     $('range-chips').addEventListener('click', function (e) {
       var chip = e.target.closest('.chip');
@@ -297,6 +363,12 @@
           '<div class="big">ORDERS</div>' +
           '<div class="c">' + esc(d.range.from) + (d.range.from !== d.range.to ? ' to ' + esc(d.range.to) : '') + '</div>' +
           '<hr>' + rows + '<hr>' +
+          (d.by_location && d.by_location.length > 1
+            ? d.by_location.map(function (l) {
+                return '<div class="row"><span>' + esc(l.name) + ' (' + l.count + ')</span><span>' +
+                       esc(l.gross) + '</span></div>';
+              }).join('') + '<hr>'
+            : '') +
           '<div class="row"><span>Orders</span><span>' + d.totals.count + '</span></div>' +
           '<div class="row"><span>Subtotal</span><span>' + esc(d.totals.subtotal) + '</span></div>' +
           '<div class="row"><span>Tax</span><span>' + esc(d.totals.tax) + '</span></div>' +

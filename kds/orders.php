@@ -48,6 +48,19 @@ $cfg = bb_config();
 
   <!-- Filters -->
   <div class="ord-filters">
+
+    <!-- Location toggle. Rendered from config so adding a third store
+         needs no change here. -->
+    <div class="loc-switch" id="loc-switch">
+      <span class="loc-switch-glider" id="loc-glider"></span>
+      <button type="button" class="loc-seg active" data-loc="all">Both</button>
+      <?php foreach (($cfg['locations'] ?? []) as $id => $loc): ?>
+        <button type="button" class="loc-seg" data-loc="<?= htmlspecialchars($id) ?>">
+          <?= htmlspecialchars($loc['name']) ?>
+        </button>
+      <?php endforeach; ?>
+    </div>
+
     <div class="chip-row" id="range-chips">
       <button type="button" class="chip active" data-range="today">Today</button>
       <button type="button" class="chip" data-range="yesterday">Yesterday</button>

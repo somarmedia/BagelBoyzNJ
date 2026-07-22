@@ -615,3 +615,59 @@ select.text-input  { -webkit-appearance: none; }
   .ord-tot-n { font-size: 1rem; }
   .ord-time { width: 58px; font-size: .76rem; }
 }
+
+/* ============================================================
+   LOCATION TOGGLE  (order history)
+   Segmented switch with a sliding indicator. Segments are
+   rendered from config, so a third store just works.
+   ============================================================ */
+.loc-switch {
+  position: relative; display: flex; gap: 0;
+  padding: 4px; margin-bottom: 12px; border-radius: 12px;
+  background: var(--k-surface-2); border: 1px solid var(--k-border);
+}
+
+.loc-switch-glider {
+  position: absolute; top: 4px; bottom: 4px; left: 4px;
+  border-radius: 9px; background: var(--k-gold);
+  transition: transform .22s cubic-bezier(.4,0,.2,1), width .22s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+
+.loc-seg {
+  position: relative; z-index: 1; flex: 1;
+  padding: 11px 10px; border-radius: 9px;
+  font-size: .88rem; font-weight: 600; color: var(--k-text-dim);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color .18s ease;
+}
+.loc-seg.active { color: #1A1A1A; }
+
+/* ---- per-store colour, so a row is identifiable at a glance ---- */
+.flag-loc {
+  background: rgba(59,138,217,.18); color: #A9D0F5;
+  font-weight: 700;
+}
+.flag-loc.loc-airport { background: rgba(124,77,190,.22); color: #D2B8F5; }
+
+/* Store name on each history row, when viewing both. */
+.ord-store {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 700; letter-spacing: .3px;
+  padding: 2px 8px; border-radius: 6px;
+  background: rgba(59,138,217,.16); color: #A9D0F5;
+}
+.ord-store.loc-airport { background: rgba(124,77,190,.2); color: #D2B8F5; }
+
+/* Left border of a row picks up the store colour when showing both. */
+.ord-row.show-store { border-left-color: #3B8AD9; }
+.ord-row.show-store.loc-airport { border-left-color: #7C4DBE; }
+
+/* Per-store split inside the totals strip. */
+.ord-tot.split { background: rgba(255,255,255,.02); border: 1px dashed var(--k-border); }
+.ord-tot.split .ord-tot-l { color: #A9D0F5; }
+.ord-tot.split.loc-airport .ord-tot-l { color: #D2B8F5; }
+
+@media (max-width: 700px) {
+  .loc-seg { font-size: .78rem; padding: 10px 6px; }
+}
