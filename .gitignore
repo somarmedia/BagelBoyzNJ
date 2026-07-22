@@ -11,3 +11,9 @@ bagelbistro/php/smtp-config.php
 # printer poll key. Upload to Hostinger by hand via File Manager; it will NOT
 # auto-deploy with git. See ORDERING.md.
 includes/order-config.php
+
+# Online ordering — SQLite database and its write-ahead log. Live customer
+# orders; must never be committed. Web access is denied by db/.htaccess.
+db/*.sqlite
+db/*.sqlite-wal
+db/*.sqlite-shm

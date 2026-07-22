@@ -2,7 +2,7 @@
 
 Pickup ordering for bagelboyznj.com, with an iPad kitchen display and thermal
 ticket printing. Runs entirely on the Hostinger shared hosting you already
-have — PHP + MySQL, no extra server, no monthly platform fee.
+have — no extra server, no database to create, no monthly platform fee.
 
 ---
 
@@ -17,7 +17,9 @@ have — PHP + MySQL, no extra server, no monthly platform fee.
 | **API** | `api/` | Menu, order creation, status, Stripe webhook |
 | **Printing** | `print/` | Bridge + WebPRNT + CloudPRNT + Epson, one shared queue |
 | **Print bridge** | `backend/src/print-bridge.js` | Runs at the shop, prints to the TSP143IIIW |
-| **Database** | `db/schema.sql` | Orders, items, options, print queue, 86 board |
+| **Settings** | `includes/order-settings.php` | Preview key, hours, tax, the go-live switch |
+| **Database** | `db/bagelboyz.sqlite` | SQLite, created automatically. MySQL optional |
+| **Self-check** | `php/ordering-status.php` | Tells you what's misconfigured |
 
 ### Order lifecycle
 
@@ -58,12 +60,12 @@ That drops a cookie, so from then on you just use the site normally on that
 device and see the new system. Do it once on your phone, once on the iPad,
 once on whatever Jess uses. To leave: `?preview=off`.
 
-Set the key in `includes/order-config.php`:
+Your key is already set in `includes/order-settings.php`:
 
 ```php
 'ordering' => [
-    'public'      => false,                  // ← the big switch
-    'preview_key' => 'something-only-you-know',
+    'public'      => false,              // ← the big switch
+    'preview_key' => 'boil-boyz-bd6c9d', // change to anything you like
 ],
 ```
 
@@ -80,77 +82,66 @@ only the safety rails:
 **Going live is one line:** `'public' => true`. Flipping it back to `false`
 instantly restores the old page — no deploy, no git revert.
 
-### What works with no database yet
-
-If you push before creating the database, preview still shows you the full
-menu, the customization sheets and the cart — that's all served from
-`data/menu.php`. Only checkout fails, because that's the part that needs to
-write an order. Enough to review the menu and pricing; not enough to test the
-kitchen flow.
+Everything works straight after a push — the SQLite database builds itself on
+first use, so preview gives you the complete flow including checkout, the
+kitchen display and tickets.
 
 ---
 
-## Setup — do these in order
+## Setup
 
-### 1. Create the database
+**There is nothing to set up.** Push, and it runs.
 
-hPanel → **Databases → MySQL Databases** → create a database and a user, give
-that user all privileges on it. Write down the four values.
+The database is SQLite — a single file at `db/bagelboyz.sqlite`, created
+automatically the first time the site touches it. No database to create, no
+credentials to enter, no schema to import. Web access to it is blocked by
+`db/.htaccess`, and it's gitignored so live orders never end up in the repo.
 
-Then hPanel → **phpMyAdmin** → select the database → **Import** → upload
-`db/schema.sql` → Go.
+Settings live in **`includes/order-settings.php`**, which is committed and
+deploys with git. That's where the preview key, hours, tax rate and the
+`public` switch are.
 
-You should end up with eight `bb_` tables.
+### When you eventually need secrets
 
-### 2. Create the config file
+`includes/order-config.php` is an optional private overlay, deep-merged over
+the base settings. You only need it for things that must never sit in the
+repo:
 
-```bash
-cp includes/order-config.example.php includes/order-config.php
-```
+- **A private KDS PIN** — do this before real customers order. The default is
+  in the repo, and the kitchen display shows customer names and phone numbers.
+- **Stripe keys** — when you connect payments
+- **MySQL credentials** — only if you outgrow SQLite
 
-Fill in the `db` block with what you just created. Then set:
+Copy `includes/order-config.example.php` to `includes/order-config.php`,
+uncomment what you need, and upload it by hand via hPanel → File Manager →
+`public_html/includes/`. It's gitignored, so it will not deploy with git.
 
-- **`ordering.preview_key`** — your way in before going live. See above.
-- **`kds.pin`** — change it off `2021`. This unlocks the iPad.
-- **`printing.poll_key`** — a long random string. The print bridge needs this
-  and it authorizes fetching kitchen tickets, so make it properly random.
-- **`email.store_to`** — where new-order notification emails land.
-- **`tax.rate`** — currently `0.0625`. See the tax section below.
+### Is SQLite really OK?
 
-`includes/order-config.php` is **gitignored** — it holds secrets, so it will
-NOT auto-deploy. Upload it by hand: hPanel → **File Manager** →
-`public_html/includes/`. Same rule as `php/smtp-config.php`.
+For two bagel shops, yes — comfortably. It handles this volume without
+noticing. Move to MySQL when you want the data visible in phpMyAdmin or you're
+running reports against it. That's a config change plus a schema import
+(`db/schema.sql`), and everything else keeps working — all the application SQL
+is written once and translated per driver.
 
-### 3. Deploy
+### Check it
 
-```bash
-git add -A
-git commit -m "Add online ordering system"
-git push origin main
-```
+Visit **`/php/ordering-status.php`**. It walks every dependency and tells you
+what, if anything, is wrong. Safe to leave up — it reports only whether things
+are set, never their values.
 
-Hostinger auto-pulls within seconds. Then upload `includes/order-config.php`
-manually as above.
+Then:
 
-### 4. Check it — still in preview
+1. `https://bagelboyznj.com/order.php?preview=boil-boyz-bd6c9d` — purple
+   banner, full menu, working cart
+2. Place a test order with **Pay at pickup**
+3. `https://bagelboyznj.com/kds/` — PIN `0221`. The order appears with a
+   **TEST ORDER** badge and announces itself out loud
+4. Walk it Start → Ready → Picked Up; the tracking link follows along
+5. Open `order.php` in a private window with **no** `?preview=` — you should
+   see the **old DoorDash/Grubhub page**
 
-1. `https://bagelboyznj.com/order.php?preview=YOUR_KEY` — purple banner,
-   menu loads, cart works
-2. Open it in a private/incognito window with no `?preview=` — you should see
-   the **old DoorDash/Grubhub page**. If you don't, stop and check
-   `ordering.public` is `false`
-3. Place a test order with **Pay at pickup**
-4. `https://bagelboyznj.com/kds/` — sign in with your PIN. The order should
-   appear with a **TEST ORDER** badge and announce itself out loud
-5. Walk it through Start → Ready → Picked Up
-6. The tracking link in the confirmation should follow along live
-7. If the print bridge is running, a ticket should print with the TEST header
-
-Then flip `'public' => true` when you're happy.
-
-If the menu spins forever, the database connection is wrong. Set
-`'debug' => true` in the config temporarily and reload — the API will return
-the real error. **Set it back to `false` before you're done.**
+Then set `'public' => true` in `includes/order-settings.php` to go live.
 
 ---
 

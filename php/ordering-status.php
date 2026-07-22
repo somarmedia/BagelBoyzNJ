@@ -46,19 +46,24 @@ if ($missingCode) {
 }
 
 /* ---------------------------------------------------------------
-   2. The config file (hand-uploaded — never deploys via git)
+   2. Settings
    --------------------------------------------------------------- */
-$configPath = $root . '/includes/order-config.php';
-$hasConfig  = file_exists($configPath);
+$settingsPath = $root . '/includes/order-settings.php';
+$secretsPath  = $root . '/includes/order-config.php';
 
-if (!$hasConfig) {
+if (!file_exists($settingsPath)) {
     $fatal = true;
-    chk($checks, 'includes/order-config.php', 'fail',
-        'Not found on the server.',
-        'This file is gitignored on purpose (it holds passwords) so it does <strong>not</strong> deploy with git. Upload it by hand: hPanel &rarr; File Manager &rarr; <code>public_html/includes/</code>.');
+    chk($checks, 'includes/order-settings.php', 'fail',
+        'Not found.',
+        'This file is committed and should deploy with git. Re-push, or check hPanel &rarr; Git for a failed pull.');
 } else {
-    chk($checks, 'includes/order-config.php', 'ok', 'Found.');
+    chk($checks, 'includes/order-settings.php', 'ok', 'Found &mdash; base settings loaded.');
 }
+
+chk($checks, 'includes/order-config.php (private overrides)',
+    file_exists($secretsPath) ? 'ok' : 'warn',
+    file_exists($secretsPath) ? 'Found &mdash; merged over the base settings.' : 'Not present.',
+    file_exists($secretsPath) ? '' : 'Optional. Everything runs without it. You only need it for real secrets &mdash; Stripe keys, a MySQL password, a private KDS PIN. It is gitignored, so upload it by hand when you do.');
 
 /* Everything below needs the config loaded. */
 $cfg = null;
@@ -104,31 +109,47 @@ if ($cfg) {
     /* -----------------------------------------------------------
        4. Database
        ----------------------------------------------------------- */
-    $dbOk = false;
+    $driver = bb_db_driver();
+    $dbOk   = false;
+
+    if ($driver === 'sqlite') {
+        $sqlitePath = bb_config('db.sqlite_path');
+        $dir        = dirname($sqlitePath);
+        if (!is_dir($dir) || !is_writable($dir)) {
+            chk($checks, 'Database folder writable', 'fail',
+                'Cannot write to <code>db/</code>.',
+                'SQLite needs to create its file there. Set the <code>db/</code> folder to 755 in hPanel &rarr; File Manager.');
+        }
+    }
+
     try {
-        $pdo = bb_db();
+        $pdo  = bb_db();
         $dbOk = true;
-        chk($checks, 'Database connection', 'ok', 'Connected.');
+        chk($checks, 'Database connection', 'ok',
+            $driver === 'sqlite'
+                ? 'Connected (SQLite &mdash; created automatically, no setup needed).'
+                : 'Connected (MySQL).');
     } catch (Throwable $e) {
         chk($checks, 'Database connection', 'fail',
             'Could not connect.',
-            'Check the <code>db</code> block in <code>includes/order-config.php</code> against hPanel &rarr; Databases. Browsing the menu still works without this; placing an order does not.');
+            $driver === 'sqlite'
+                ? 'Check that <code>db/</code> is writable, and that PHP has <code>pdo_sqlite</code> enabled (hPanel &rarr; PHP Configuration &rarr; PHP Extensions).'
+                : 'Check the <code>db</code> block in <code>includes/order-config.php</code> against hPanel &rarr; Databases.');
     }
 
     if ($dbOk) {
         $needed = ['bb_orders', 'bb_order_items', 'bb_order_item_options', 'bb_order_events',
                    'bb_print_jobs', 'bb_item_availability', 'bb_store_state', 'bb_kds_sessions',
                    'bb_rate_limit'];
-        $found = [];
-        try {
-            foreach ($pdo->query('SHOW TABLES') as $row) $found[] = array_values($row)[0];
-        } catch (Throwable $e) { /* fall through */ }
+        $found = bb_db_tables($pdo);
 
         $missingTables = array_values(array_diff($needed, $found));
         if ($missingTables) {
             chk($checks, 'Database tables', 'fail',
                 'Missing ' . count($missingTables) . ': ' . implode(', ', $missingTables),
-                'Import <code>db/schema.sql</code> via hPanel &rarr; phpMyAdmin &rarr; Import.');
+                $driver === 'sqlite'
+                    ? 'These are normally created automatically. Delete <code>db/bagelboyz.sqlite</code> and reload this page to rebuild.'
+                    : 'Import <code>db/schema.sql</code> via hPanel &rarr; phpMyAdmin &rarr; Import.');
         } else {
             chk($checks, 'Database tables', 'ok', 'All 9 tables present.');
 
@@ -168,6 +189,14 @@ if ($cfg) {
     chk($checks, 'Email (order receipts)', $smtp ? 'ok' : 'warn',
         $smtp ? 'smtp-config.php found.' : 'php/smtp-config.php not found.',
         $smtp ? '' : 'Order emails and reCAPTCHA are both off without it. Upload it the same way as the ordering config.');
+
+    $pin = (string) ($cfg['kds']['pin'] ?? '');
+    $pinIsPublic = ($pin === '0221' || $pin === '2021') && empty($cfg['_has_secrets']);
+    chk($checks, 'Kitchen display PIN', $pinIsPublic ? 'warn' : 'ok',
+        $pinIsPublic ? 'Still the default from the repo.' : 'Set privately.',
+        $pinIsPublic
+            ? 'Fine for preview. Before real customers order, set a private PIN in <code>includes/order-config.php</code> &mdash; the kitchen display shows customer names and phone numbers.'
+            : '');
 
     $pollKey = (string) ($cfg['printing']['poll_key'] ?? '');
     $printOk = $pollKey !== '' && $pollKey !== 'CHANGE_ME_TO_A_LONG_RANDOM_STRING';
