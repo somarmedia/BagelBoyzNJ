@@ -1,0 +1,20 @@
+# Bagel Boyz NJ — block all direct web access to /includes/.
+#
+# order-config.php holds the database password, the Stripe SECRET key, the KDS
+# PIN and the printer poll key. PHP normally executes rather than displays it,
+# but a server misconfiguration or a .php handler outage would serve it as
+# plain text. This is the belt to that suspenders.
+#
+# Nothing in here is meant to be requested by a browser — every file is
+# require'd by scripts one level up.
+
+# Apache 2.4+ / LiteSpeed
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Apache 2.2 fallback
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

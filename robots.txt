@@ -3,4 +3,13 @@ Allow: /
 Disallow: /php/
 Disallow: /backend/
 
+# Online ordering internals — nothing here is a landing page.
+Disallow: /api/
+Disallow: /kds/
+Disallow: /print/
+Disallow: /includes/
+Disallow: /data/
+Disallow: /db/
+Disallow: /track.php
+
 Sitemap: https://bagelboyznj.com/sitemap.xml

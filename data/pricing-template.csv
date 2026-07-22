@@ -1,0 +1,185 @@
+﻿# Bagel Boyz NJ - Price Sheet
+# Put new prices in the NEW_PRICE column. Leave blank to keep the current one.
+"# Use plain dollars: 7.95  (not $7.95, not 795)"
+# Rows marked ASSUMED are ones I guessed - please check those first.
+
+type,section,id,name,current_price,NEW_PRICE,source,check_this
+ITEM,Bagels,bagel_single,Bagel,1.50,,menu,
+ITEM,Bagels,bagel_half_dozen,½ Dozen Bagels,8.65,,menu,
+ITEM,Bagels,bagel_dozen,1 Dozen Bagels,16.95,,menu,
+ITEM,Bagels,bagel_specialty,Specialty Bagel,2.29,,menu,
+ITEM,Bagels,bagel_gf,Gluten Free Bagel,3.50,,menu,
+ITEM,Bagel Spreads,sp_butter,Bagel w/ Butter,2.80,,menu,
+ITEM,Bagel Spreads,sp_cream_cheese,Bagel w/ Cream Cheese,3.60,,menu,
+ITEM,Bagel Spreads,sp_gourmet_cc,Bagel w/ Gourmet Cream Cheese,4.60,,menu,
+ITEM,Bagel Spreads,sp_spec_butter,Specialty Bagel w/ Butter,3.70,,menu,
+ITEM,Bagel Spreads,sp_spec_cc,Specialty Bagel w/ Cream Cheese,4.20,,menu,
+ITEM,Bagel Spreads,sp_spec_gourmet_cc,Specialty Bagel w/ Gourmet Cream Cheese,5.20,,menu,
+ITEM,Bagel Spreads,sp_spec_lox_spread,Specialty Bagel w/ Lox Spread,7.30,,menu,
+ITEM,Bagel Spreads,sp_jelly,Bagel w/ Jelly,3.10,,menu,
+ITEM,Bagel Spreads,sp_butter_jelly,Bagel w/ Butter & Jelly,3.45,,menu,
+ITEM,Bagel Spreads,sp_pb,Bagel w/ Peanut Butter,3.60,,menu,
+ITEM,Bagel Spreads,sp_cc_jelly,Bagel w/ Cream Cheese & Jelly,3.80,,menu,
+ITEM,Bagel Spreads,sp_pbj,Bagel w/ Peanut Butter & Jelly,3.80,,menu,
+ITEM,Bagel Spreads,sp_lox_spread,Bagel w/ Lox Spread,6.29,,menu,
+ITEM,Bagel Spreads,sp_sliced_lox,"Bagel w/ Sliced Lox, Cream Cheese, L/T/O",10.99,,menu,
+ITEM,Bagel Spreads,sp_sliced_lox_gourmet,Sliced Lox w/ Gourmet Specialty Cream Cheese,11.99,,menu,
+ITEM,Breakfast Sandwiches,bf_eggs,Eggs,4.99,,menu,
+ITEM,Breakfast Sandwiches,bf_eggs_cheese,Eggs & Cheese,5.79,,menu,
+ITEM,Breakfast Sandwiches,bf_eggs_meat,Eggs w/ Choice of Meat,7.45,,menu,
+ITEM,Breakfast Sandwiches,bf_eggs_meat_cheese,Eggs w/ Choice of Meat & Cheese,7.95,,menu,
+ITEM,Breakfast Sandwiches,bf_obo,OBO,6.95,,menu,
+ITEM,Breakfast Sandwiches,bf_pobo,POBO,9.35,,menu,
+ITEM,Breakfast Sandwiches,bf_sobo,SOBO,9.35,,menu,
+ITEM,Breakfast Sandwiches,bf_bobo,BOBO,9.35,,menu,
+ITEM,Breakfast Sandwiches,bf_blt,BLT,6.99,,menu,
+ITEM,Breakfast Sandwiches,bf_grilled_cheese,Grilled Cheese,5.99,,menu,
+ITEM,Breakfast Sandwiches,bf_healthy_turkey,Healthy Turkey,8.60,,menu,
+ITEM,Breakfast Sandwiches,bf_healthy_chicken,Healthy Chicken,8.99,,menu,
+ITEM,Breakfast Sandwiches,bf_healthy_healthy,Healthy Healthy,8.99,,menu,
+ITEM,Breakfast Sandwiches,bf_rj_special,RJ Special,8.99,,menu,
+ITEM,Breakfast Sandwiches,bf_belly_buster,"Big Robby ""G"" Belly Buster",12.99,,menu,
+ITEM,Omelets,om_eggs,Eggs Omelet,7.29,,menu,
+ITEM,Omelets,om_cheese,Eggs w/ Cheese Omelet,7.99,,menu,
+ITEM,Omelets,om_meat,Eggs w/ Choice of Meat Omelet,9.99,,menu,
+ITEM,Omelets,om_meat_cheese,3 Eggs w/ Choice of Meat & Cheese Omelet,10.29,,menu,
+ITEM,Omelets,om_veggie,Veggie Omelet,10.20,,menu,
+ITEM,Omelets,om_greek,Greek Omelet,10.20,,menu,
+ITEM,Omelets,om_western,Western Omelet,10.20,,menu,
+ITEM,Omelets,om_cheesesteak,Cheesesteak Omelet,10.99,,menu,
+ITEM,Omelets,om_meat_lovers,Meat Omelet,12.99,,menu,
+ITEM,Omelets,om_healthy,Healthy Omelet,12.99,,menu,
+ITEM,Boar's Head Deli,deli_roast_beef,Boar's Head Roast Beef,8.99,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_roast_beef / per_lb,Boar's Head Roast Beef — per pound,18.99,,menu,
+ITEM,Boar's Head Deli,deli_pastrami,Boar's Head Pastrami,8.99,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_pastrami / per_lb,Boar's Head Pastrami — per pound,18.99,,menu,
+ITEM,Boar's Head Deli,deli_pepperoni,Boar's Head Pepperoni,7.99,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_pepperoni / per_lb,Boar's Head Pepperoni — per pound,14.99,,menu,
+ITEM,Boar's Head Deli,deli_everroast,Boar's Head EverRoast Chicken,7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_everroast / per_lb,Boar's Head EverRoast Chicken — per pound,14.99,,menu,
+ITEM,Boar's Head Deli,deli_buffalo_chicken,Boar's Head Blazing Buffalo Chicken,7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_buffalo_chicken / per_lb,Boar's Head Blazing Buffalo Chicken — per pound,14.99,,menu,
+ITEM,Boar's Head Deli,deli_oven_gold,Boar's Head Oven Gold Turkey,7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_oven_gold / per_lb,Boar's Head Oven Gold Turkey — per pound,14.99,,menu,
+ITEM,Boar's Head Deli,deli_maple_turkey,Boar's Head Maple Honey Turkey,7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_maple_turkey / per_lb,Boar's Head Maple Honey Turkey — per pound,15.99,,menu,
+ITEM,Boar's Head Deli,deli_genoa,Boar's Head Genoa Salami,7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_genoa / per_lb,Boar's Head Genoa Salami — per pound,14.99,,menu,
+ITEM,Boar's Head Deli,deli_deluxe_ham,Boar's Head Deluxe Ham,7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_deluxe_ham / per_lb,Boar's Head Deluxe Ham — per pound,15.99,,menu,
+ITEM,Boar's Head Deli,deli_cheese_american,Boar's Head American Cheese,6.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_cheese_american / per_lb,Boar's Head American Cheese — per pound,11.99,,menu,
+ITEM,Boar's Head Deli,deli_cheese_other,"Boar's Head Cheese (Swiss, Provolone, Muenster, Pepper Jack)",7.50,,menu,
+BY-WEIGHT,Boar's Head Deli,deli_cheese_other / per_lb,"Boar's Head Cheese (Swiss, Provolone, Muenster, Pepper Jack) — per pound",12.99,,menu,
+ITEM,Salad Sandwiches,sal_egg,Egg Salad,6.99,,menu,
+BY-WEIGHT,Salad Sandwiches,sal_egg / half_lb,Egg Salad — per ½ pound,4.99,,menu,
+ITEM,Salad Sandwiches,sal_tuna,Tuna Salad,8.49,,menu,
+BY-WEIGHT,Salad Sandwiches,sal_tuna / half_lb,Tuna Salad — per ½ pound,6.99,,menu,
+ITEM,Salad Sandwiches,sal_chicken,Chicken Salad,8.49,,menu,
+BY-WEIGHT,Salad Sandwiches,sal_chicken / half_lb,Chicken Salad — per ½ pound,6.99,,menu,
+ITEM,Wraps,wr_1,Wrap 1: Ham & Swiss,9.99,,menu,
+ITEM,Wraps,wr_2,"Wrap 2: Chicken, Tuna, or Egg Salad",9.99,,menu,
+ITEM,Wraps,wr_3,Wrap 3: Italian,9.99,,menu,
+ITEM,Wraps,wr_4,Wrap 4: Turkey or Chicken,9.99,,menu,
+ITEM,Wraps,wr_5,Wrap 5: Buffalo Chicken,9.99,,menu,
+ITEM,Wraps,wr_6,Wrap 6: Grilled Chicken,9.99,,menu,
+ITEM,Wraps,wr_7,Wrap 7: Turkey Club,9.99,,menu,
+ITEM,Wraps,wr_8,Wrap 8: Chicken Fajita,9.99,,menu,
+ITEM,Wraps,wr_9,Wrap 9: Greek,9.99,,menu,
+ITEM,Wraps,wr_10,Wrap 10: Hot Roast Beef,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_sloppy,Bagel Boyz Sloppy,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_tommy_pastrami,Tommy Pastrami,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_kevin,Kevin Special,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_alex_delight,Alex's Delight,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_veggie,Veggie,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_peter_style,Peter Style,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_cheesesteak,Bagel Boyz Cheesesteak,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_noahs_italian,Noah's Italian,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_turkey_chicken,Turkey or Chicken Special,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_hot_spicy,Hot & Spicy,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_classic,The Classic,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_alexander,Alexander the Great,9.99,,menu,
+ITEM,Specialty Sandwiches,spc_grand_supreme,Grand Supreme,9.99,,menu,
+ITEM,Sides,side_butter,Side of Butter,0.50,,menu,
+ITEM,Sides,side_cream_cheese,Side of Cream Cheese,0.75,,menu,
+ITEM,Sides,side_coleslaw,Coleslaw (½ lb),2.50,,menu,
+ITEM,Sides,side_meat,Side of Meat,2.50,,menu,
+ITEM,Sides,side_home_fries,Home Fries,3.50,,menu,
+ITEM,Sides,side_french_fries,French Fries,3.50,,menu,
+ITEM,Sides,side_hash_brown,Hash Brown,1.75,,ASSUMED,"Priced from the Extras section, not listed under Sides"
+ITEM,Beverages,bev_hot,Hot Beverage,3.00,,menu,
+ITEM,Beverages,bev_cold_brew,Cold Brewed Iced Coffee (24 oz),4.50,,menu,
+ITEM,Beverages,bev_bottled_water,Bottled Water,2.00,,ASSUMED,"Menu says ""Varies"" — I guessed $2.00"
+ITEM,Beverages,bev_soda,Soda,2.50,,ASSUMED,"Menu says ""Varies"" — I guessed $2.50"
+ITEM,Beverages,bev_juice,Juice,3.00,,ASSUMED,"Menu says ""Varies"" — I guessed $3.00"
+ADD-ON,Served On (bread_choice),hero_roll,Hero Roll,0.75,,derived,"Menu: ""Roll or wrap add $0.75"""
+ADD-ON,Served On (bread_choice),wrap,Wrap,0.75,,derived,"Menu: ""Roll or wrap add $0.75"""
+ADD-ON,Choose Your Bagel (bagel_type),gluten_free,Gluten Free,2.00,,derived,Gluten Free derived from $3.50 GF bagel vs $1.50 plain
+ADD-ON,Choose Your Bagel (bagel_type_only),gluten_free,Gluten Free,2.00,,derived,Gluten Free derived from $3.50 GF bagel vs $1.50 plain
+ADD-ON,Choose Your Meat (meat_choice),turkey_bacon,Turkey Bacon,0.99,,derived,"Menu: ""turkey bacon add $0.99"""
+ADD-ON,Choose Your Cheese (cheese_choice),american,American,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),white_american,White American,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),swiss,Swiss,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),provolone,Provolone,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),cheddar,Cheddar,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),muenster,Muenster,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),pepper_jack,Pepper Jack,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),mozzarella,Mozzarella,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Choose Your Cheese (cheese_choice),no_cheese,No Cheese,0.00,,ASSUMED,Cheese varieties are not listed on the menu — confirm what you stock
+ADD-ON,Egg Style (egg_style),egg_whites,Egg Whites,0.99,,derived,"Menu: ""Egg whites add $0.99"""
+ADD-ON,Cream Cheese Flavor (cream_cheese_flavor),plain,Plain,0.00,,ASSUMED,Flavors are not listed on the menu — confirm what you stock
+ADD-ON,Cream Cheese Flavor (cream_cheese_flavor),scallion,Scallion,0.00,,ASSUMED,Flavors are not listed on the menu — confirm what you stock
+ADD-ON,Cream Cheese Flavor (cream_cheese_flavor),veggie,Veggie,0.00,,ASSUMED,Flavors are not listed on the menu — confirm what you stock
+ADD-ON,Cream Cheese Flavor (cream_cheese_flavor),olive,Olive Pimento,0.00,,ASSUMED,Flavors are not listed on the menu — confirm what you stock
+ADD-ON,Add Extras (add_ons),tomato,Tomato,0.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),onions,Onions,0.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),peppers,Peppers,0.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),jalapenos,Jalapeños,0.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),pickles,Pickles,0.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),spinach,Spinach,1.00,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),avocado,Avocado,1.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),hash_brown,Hash Brown,1.75,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),extra_meat,Extra Meat,2.50,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Add Extras (add_ons),extra_chz,Extra Cheese,0.75,,derived,Prices taken from the Extras section of the menu
+ADD-ON,Condiments (condiments),spk,"SPK (Salt, Pepper, Ketchup)",0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),salt_pepper,Salt & Pepper,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),ketchup,Ketchup,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),mayo,Mayo,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),mustard,Mustard,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),honey_mustard,Honey Mustard,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),russian,Russian Dressing,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),chipotle_mayo,Chipotle Mayo,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),hot_sauce,Hot Sauce,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),oil_vinegar,Oil & Vinegar,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Condiments (condiments),butter,Butter,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Served On (deli_bread),hero_roll,Hero Roll,0.75,,derived,"Menu: ""Roll or wrap add $0.75"""
+ADD-ON,Served On (deli_bread),wrap,Wrap,0.75,,derived,"Menu: ""Roll or wrap add $0.75"""
+ADD-ON,Choose Your Bagel (deli_bagel_type),gluten_free,Gluten Free,2.00,,derived,Gluten Free derived from $3.50 GF bagel vs $1.50 plain
+ADD-ON,Served On (salad_bread),hero_roll,Hero Roll,0.75,,derived,"Menu: ""Roll or wrap add $0.75"""
+ADD-ON,Served On (salad_bread),wrap,Wrap,0.75,,derived,"Menu: ""Roll or wrap add $0.75"""
+ADD-ON,Choose Your Bagel (salad_bagel_type),gluten_free,Gluten Free,2.00,,derived,Gluten Free derived from $3.50 GF bagel vs $1.50 plain
+ADD-ON,Add Cheese? (cheese_optional),american,American,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),white_american,White American,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),swiss,Swiss,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),provolone,Provolone,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),cheddar,Cheddar,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),muenster,Muenster,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),pepper_jack,Pepper Jack,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+ADD-ON,Add Cheese? (cheese_optional),mozzarella,Mozzarella,0.75,,ASSUMED,Cheese varieties + $0.75 upcharge from Extras — confirm
+VARIANT,Size (hot_bev_size),small,Small (12 oz),3.00,,menu,
+VARIANT,Size (hot_bev_size),medium,Medium (16 oz),3.25,,menu,
+VARIANT,Size (hot_bev_size),large,Large (20 oz),3.50,,menu,
+ADD-ON,How Do You Take It? (coffee_prep),black,Black,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),milk,Milk,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),cream,Cream,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),oat_milk,Oat Milk,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),almond_milk,Almond Milk,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),sugar,Sugar,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),sweet_n_low,Sweet'N Low,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),splenda,Splenda,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,How Do You Take It? (coffee_prep),extra_sweet,Extra Sweet,0.00,,ASSUMED,Not listed on the menu — confirm the list
+ADD-ON,Which Drink? (hot_bev_kind),coffee,Coffee,0.00,,ASSUMED,Drink list from the Beverages line — confirm
+ADD-ON,Which Drink? (hot_bev_kind),decaf,Decaf Coffee,0.00,,ASSUMED,Drink list from the Beverages line — confirm
+ADD-ON,Which Drink? (hot_bev_kind),tea,Tea,0.00,,ASSUMED,Drink list from the Beverages line — confirm
+ADD-ON,Which Drink? (hot_bev_kind),hot_choc,Hot Chocolate,0.00,,ASSUMED,Drink list from the Beverages line — confirm
+ADD-ON,Which Drink? (hot_bev_kind),cappuccino,Cappuccino,0.00,,ASSUMED,Drink list from the Beverages line — confirm

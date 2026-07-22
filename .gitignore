@@ -6,3 +6,8 @@ social-feed.json
 *.log
 php/smtp-config.php
 bagelbistro/php/smtp-config.php
+
+# Online ordering — holds DB credentials, Stripe secret key, KDS PIN and the
+# printer poll key. Upload to Hostinger by hand via File Manager; it will NOT
+# auto-deploy with git. See ORDERING.md.
+includes/order-config.php

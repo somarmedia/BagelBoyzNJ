@@ -1,0 +1,12 @@
+# Bagel Boyz NJ — block direct web access to /data/.
+# menu.php here is the canonical price list, loaded via require by the API.
+# It should never be fetched directly.
+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

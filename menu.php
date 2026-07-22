@@ -764,9 +764,9 @@
   <section class="cta-banner">
     <div class="container">
       <h2>Ready to Order?</h2>
-      <p>Skip the line and order ahead through DoorDash or Grubhub, or give us a call.</p>
+      <p>Build it exactly how you like it, pay online, and skip the line.</p>
       <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-        <a href="order.php" class="btn btn-white btn-lg"><i class="fas fa-shopping-bag"></i> Order Online</a>
+        <a href="order.php" class="btn btn-white btn-lg"><i class="fas fa-shopping-bag"></i> Order for Pickup</a>
         <a href="tel:7326464455" class="btn btn-dark btn-lg"><i class="fas fa-phone"></i> Call Holmdel Rd</a>
         <a href="tel:7323351300" class="btn btn-dark btn-lg"><i class="fas fa-phone"></i> Call Airport Plaza</a>
       </div>
