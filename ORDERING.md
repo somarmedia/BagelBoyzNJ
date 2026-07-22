@@ -19,6 +19,7 @@ have — no extra server, no database to create, no monthly platform fee.
 | **Print bridge** | `backend/src/print-bridge.js` | Runs at the shop, prints to the TSP143IIIW |
 | **Settings** | `includes/order-settings.php` | Preview key, hours, tax, the go-live switch |
 | **Database** | `db/bagelboyz.sqlite` | SQLite, created automatically. MySQL optional |
+| **Order history** | `kds/orders.php` | Review past orders, day totals, reprints |
 | **Self-check** | `php/ordering-status.php` | Tells you what's misconfigured |
 
 ### Order lifecycle
@@ -174,6 +175,26 @@ When a new order lands, the iPad plays a rising chime and speaks
 - **Settings** (⚙️) — change the quoted wait time, pause orders during a rush,
   or stop online ordering entirely
 - **Reprint** a ticket from the order detail
+- **Order history** (🧾 icon) — see below
+
+### Reviewing orders
+
+The live board only shows what's still being worked on — once you tap **Picked
+Up**, the order leaves it. Everything else lives at **`kds/orders.php`**, the
+🧾 icon in the header.
+
+- **Date range** — Today / Yesterday / Last 7 / Last 30, or pick your own
+- **Totals for the range** — order count, gross, subtotal, tax, tips.
+  Cancelled and test orders are excluded from the money figures
+- **Search** by order number, customer name, or phone (typed any way —
+  `7325550100` and `(732) 555-0100` both match)
+- **Tap any order** for the full detail: every item and option, notes, payment,
+  how long it took, and a timestamped history of who moved it when
+- **Reprint** a ticket from the detail view
+- **Print the list** (printer icon) for an end-of-day summary
+
+Same PIN as the kitchen display, and it only ever shows the location you're
+signed in to.
 
 ---
 
@@ -471,7 +492,7 @@ Deliberately out of scope for this pass — say the word on any of them:
 
 - **SMS notifications** (Twilio) — email + tracking page only right now
 - **Delivery** — pickup only, as agreed
-- **Order history / customer accounts** — every order is a guest order
-- **Owner reporting dashboard** — sales data is all in `bb_orders`, but there's
-  no UI over it yet
+- **Customer accounts** — every order is a guest order
+- **Reporting beyond the daily view** — `kds/orders.php` covers day/range
+  totals; there's no charting or export yet
 - **Unified menu rendering** — `menu.php` and `data/menu.php` are still separate

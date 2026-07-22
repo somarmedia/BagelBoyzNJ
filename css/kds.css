@@ -514,3 +514,104 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .alert-ack { padding: 11px 20px; font-size: .9rem; }
   .board { padding: 12px 12px calc(12px + var(--safe-b)); }
 }
+
+/* ============================================================
+   ORDER HISTORY  (kds/orders.php)
+   ============================================================ */
+.ord-filters {
+  padding: 12px 18px; background: var(--k-surface);
+  border-bottom: 1px solid var(--k-border); flex-shrink: 0;
+}
+.ord-filters .chip-row { margin-top: 0; margin-bottom: 10px; }
+
+.ord-filter-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.ord-filter-row:last-child { margin-bottom: 0; }
+.ord-filter-row .text-input { flex: 1; padding: 10px 12px; font-size: .92rem; }
+.ord-dash { color: var(--k-text-dim); font-size: .85rem; flex-shrink: 0; }
+
+/* iOS renders date inputs oddly without this. */
+input[type="date"] { -webkit-appearance: none; min-height: 42px; }
+select.text-input  { -webkit-appearance: none; }
+
+/* ---- totals strip ---- */
+.ord-totals {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  padding: 12px 18px; background: var(--k-surface-2);
+  border-bottom: 1px solid var(--k-border); flex-shrink: 0;
+}
+.ord-tot {
+  display: flex; flex-direction: column; min-width: 88px;
+  padding: 6px 14px; border-radius: 10px; background: rgba(255,255,255,.04);
+}
+.ord-tot-n { font-size: 1.15rem; font-weight: 700; color: var(--k-gold-l); }
+.ord-tot-l {
+  font-size: .62rem; letter-spacing: 1.3px; text-transform: uppercase;
+  color: var(--k-text-dim); margin-top: 1px;
+}
+.ord-tot-note { flex: 1; min-width: 180px; font-size: .74rem; color: var(--k-text-dim); }
+
+/* ---- rows ---- */
+.ord-daybreak {
+  font-size: .7rem; letter-spacing: 1.6px; text-transform: uppercase;
+  color: var(--k-text-dim); font-weight: 700; margin: 18px 0 8px 2px;
+}
+.ord-daybreak:first-child { margin-top: 0; }
+
+.ord-row {
+  display: flex; align-items: center; gap: 14px; width: 100%; text-align: left;
+  padding: 12px 14px; margin-bottom: 7px; border-radius: 11px;
+  background: var(--k-surface); border: 1px solid var(--k-border);
+  border-left-width: 4px; transition: background .12s ease;
+}
+.ord-row:active { background: var(--k-surface-2); }
+.ord-row.s-new,
+.ord-row.s-in_progress { border-left-color: var(--k-amber); }
+.ord-row.s-ready       { border-left-color: var(--k-green); }
+.ord-row.s-completed   { border-left-color: var(--k-blue); }
+.ord-row.s-cancelled   { border-left-color: var(--k-red); opacity: .6; }
+.ord-row.s-pending_payment { border-left-color: var(--k-text-dim); opacity: .75; }
+
+.ord-time {
+  flex-shrink: 0; width: 68px; font-size: .82rem;
+  color: var(--k-text-dim); font-variant-numeric: tabular-nums;
+}
+.ord-main { flex: 1; min-width: 0; }
+.ord-code { display: block; font-weight: 700; font-size: .98rem; }
+.ord-cust {
+  display: block; font-size: .82rem; color: var(--k-text-dim); margin-top: 1px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ord-badges { display: flex; gap: 5px; margin-top: 5px; }
+.ord-right { flex-shrink: 0; text-align: right; }
+.ord-total { display: block; font-weight: 700; font-size: 1rem; }
+.ord-status { display: block; font-size: .72rem; color: var(--k-text-dim); margin-top: 2px; }
+
+/* ---- paging ---- */
+.ord-paging {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; padding: 20px 0 8px;
+}
+.ord-paging .chip:disabled { opacity: .35; }
+.ord-page-label { font-size: .85rem; color: var(--k-text-dim); }
+
+/* ---- timeline ---- */
+.ord-tl-title {
+  font-size: .72rem; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--k-text-dim); font-weight: 700; margin-bottom: 8px;
+}
+.ord-tl-row {
+  display: flex; gap: 10px; padding: 5px 0; font-size: .82rem;
+  border-bottom: 1px solid var(--k-border);
+}
+.ord-tl-row:last-child { border-bottom: none; }
+.ord-tl-time { flex-shrink: 0; width: 78px; color: var(--k-text-dim); font-variant-numeric: tabular-nums; }
+.ord-tl-ev { flex: 1; min-width: 0; }
+.ord-tl-actor { flex-shrink: 0; color: var(--k-text-dim); font-size: .74rem; }
+
+@media (max-width: 700px) {
+  .ord-filter-row { flex-wrap: wrap; }
+  .ord-filter-row .text-input { min-width: 130px; }
+  .ord-tot { min-width: 72px; padding: 5px 10px; }
+  .ord-tot-n { font-size: 1rem; }
+  .ord-time { width: 58px; font-size: .76rem; }
+}

@@ -117,6 +117,7 @@ $printCfg  = [
 
     <div class="topbar-right">
       <span class="conn-dot" id="conn-dot" title="Connection"></span>
+      <a href="orders.php" class="icon-btn" title="Order history"><i class="fas fa-receipt"></i></a>
       <button type="button" class="icon-btn" id="btn-86" title="86 Board"><i class="fas fa-ban"></i></button>
       <button type="button" class="icon-btn" id="btn-settings" title="Settings"><i class="fas fa-gear"></i></button>
     </div>
