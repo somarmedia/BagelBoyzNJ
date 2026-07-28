@@ -227,12 +227,24 @@
     }).join('');
   }
 
+  /** True if any of the item's modifier groups replaces the base price (size). */
+  function hasVariantGroup(it) {
+    return (it.groups || []).some(function (gid) {
+      var g = S.groups[gid];
+      return g && (g.mode || 'add') === 'variant';
+    });
+  }
+
   function renderMenu() {
     $('menu-root').innerHTML = S.menu.categories.map(function (c) {
       var items = c.items.map(function (it) {
         var badges = '';
         if (it.popular)    badges += ' <span class="badge-pop">Popular</span>';
         if (!it.available) badges += ' <span class="badge-out">Sold Out</span>';
+
+        // "from $X" when a size (variant) group means the base is the lowest price.
+        var priceHtml = esc(it.price_fmt);
+        if (hasVariantGroup(it)) priceHtml = '<span class="from">from </span>' + priceHtml;
 
         return '<button type="button" class="oitem' + (it.available ? '' : ' sold-out') + '"' +
                (it.available ? ' data-item="' + esc(it.id) + '"' : ' disabled') + '>' +
@@ -241,7 +253,7 @@
                    (it.desc ? '<span class="oitem-desc">' + esc(it.desc) + '</span>' : '') +
                  '</span>' +
                  '<span class="oitem-right">' +
-                   '<span class="oitem-price">' + esc(it.price_fmt) + '</span>' +
+                   '<span class="oitem-price">' + priceHtml + '</span>' +
                    (it.available ? '<span class="oitem-add"><i class="fas fa-plus"></i></span>' : '') +
                  '</span>' +
                '</button>';

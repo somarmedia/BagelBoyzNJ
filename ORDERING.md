@@ -338,33 +338,47 @@ print. **Set up the webhook, not just the keys.**
 
 ## Editing the menu
 
-Everything lives in **`data/menu.php`**. It is the only place prices exist —
-the server re-prices every order from this file and ignores whatever the
-browser sends, so a customer can't edit their own total.
+`data/menu.php` is the only place prices exist — the server re-prices every
+order from it and ignores whatever the browser sends. **All prices are integer
+cents** (`$1.50` = `150`).
 
-**All prices are in integer cents.** `$1.50` is `150`. Never use decimals.
+### It's generated from the register
 
-Change a price:
+As of v2, `data/menu.php` is **generated from the POS export** by
+`tools/build_menu.py`, so names and prices come straight from the register.
+The raw export (`menuprg/BAGEL BOYZ.prg`, ~19 MB, holds clerk/owner data) is
+gitignored and lives outside the repo; the generated `data/menu.php` is
+committed.
 
-```php
-['id' => 'bf_eggs_cheese', 'name' => 'Eggs & Cheese', 'price' => 579, ...]
-//                                                              ^^^ $5.79
+To refresh the whole menu from a new register export:
+
+```bash
+# 1. drop the new export at menuprg/BAGEL BOYZ.prg, then re-extract:
+python tools/extract_pos.py        # writes menuprg/_menu_data.json
+# 2. rebuild:
+python tools/build_menu.py         # writes data/menu.php
 ```
 
-Add an item to a category:
+Naming, category grouping, coffee size-collapsing and the modifier-group
+mapping are curated in `tools/build_menu.py` + `tools/pos_curation.py`. Each
+POS **condiment group** becomes one reusable modifier group, and each item
+gets the groups the register actually assigned it — so conditional pricing
+(lettuce free on a breakfast sandwich, +$0.50 on a deli sandwich) is preserved
+exactly as the shop rings it up.
 
-```php
-['id' => 'bf_new_thing', 'name' => 'The New Thing', 'price' => 899,
- 'desc' => 'What is on it',
- 'groups' => ['bread_choice', 'bagel_type', 'cheese_choice', 'toasted', 'add_ons', 'condiments']],
-```
+For a one-off tweak you can still hand-edit `data/menu.php` directly — just
+know a regenerate will overwrite it.
 
-`groups` are the customization questions. They're defined at the top of the
-same file — reuse the existing ones.
+> Two known gaps from the export, both flagged to Rob & Jess:
+> - **Deli by the pound** (register group 13) has no prices in the export, so
+>   it's omitted for now. Spreads/cream cheese by the pound (group 14) has real
+>   prices and is included.
+> - A handful of packaged Starbucks/Brisk bottles land under Coffee instead of
+>   Cold Drinks — cosmetic, easy to move.
 
 > Note: `menu.php` (the public menu page) is still hand-written HTML and is
-> **separate** from `data/menu.php`. Right now a price change needs making in
-> both. Worth unifying later so the menu page renders from the data file.
+> **separate** from `data/menu.php`. Worth unifying later so the public page
+> renders from the same data.
 
 ### The price sheet
 

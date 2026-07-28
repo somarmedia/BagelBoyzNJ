@@ -17,3 +17,10 @@ includes/order-config.php
 db/*.sqlite
 db/*.sqlite-wal
 db/*.sqlite-shm
+
+# POS register export (19MB, contains clerk/owner data) and build
+# intermediates. The generated data/menu.php IS committed; the raw dump is not.
+menuprg/
+
+# Python build-tool cache
+tools/__pycache__/
