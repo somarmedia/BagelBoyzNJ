@@ -95,14 +95,33 @@ $isPreview    = bb_in_preview_mode();
   </div>
 
   <!-- ================================================================
+       MENU TOOLBAR — full-width sticky: search + category pills.
+       Lives OUTSIDE the menu grid so `position: sticky` isn't broken by the
+       grid column or the page's overflow-x clipping.
+       ================================================================ -->
+  <div class="menu-toolbar" id="menu-toolbar">
+    <div class="container">
+      <div class="menu-search">
+        <i class="fas fa-magnifying-glass"></i>
+        <input type="search" id="menu-search-input" placeholder="Search the menu…"
+               autocomplete="off" aria-label="Search the menu">
+        <button type="button" class="search-clear" id="search-clear" hidden aria-label="Clear search">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+      <nav class="cat-nav" id="cat-nav" aria-label="Menu categories"></nav>
+    </div>
+  </div>
+
+  <!-- ================================================================
        MENU
        ================================================================ -->
   <div class="order-layout">
     <div class="container order-container">
 
       <div class="order-main">
-        <!-- Sticky category rail -->
-        <nav class="cat-nav" id="cat-nav" aria-label="Menu categories"></nav>
+        <!-- Search results (shown only while searching) -->
+        <div id="search-results" hidden></div>
 
         <div class="menu-loading" id="menu-loading">
           <div class="spinner"></div>

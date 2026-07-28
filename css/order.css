@@ -18,7 +18,8 @@
    unsure whether you're looking at the live customer page.
    ============================================================ */
 .preview-banner {
-  position: sticky; top: var(--nav-height); z-index: 95;
+  /* Scrolls away with the page — only the menu toolbar stays stuck, so the
+     two don't fight over the same offset. The purple is unmistakable anyway. */
   display: flex; align-items: center; gap: .7rem; flex-wrap: wrap;
   padding: .65rem var(--space-md);
   background: repeating-linear-gradient(
@@ -40,14 +41,13 @@
 }
 .preview-exit:hover { background: rgba(0,0,0,.4); }
 
-/* The order bar stacks under the banner rather than over it. */
-.preview-banner ~ .order-bar { top: calc(var(--nav-height) + 44px); }
-
 /* ============================================================
    ORDER BAR
    ============================================================ */
+/* The order bar scrolls away with the page; the menu toolbar below it is the
+   one that stays stuck under the navbar. Two sticky siblings at the same
+   offset would collide. */
 .order-bar {
-  position: sticky; top: var(--nav-height); z-index: 90;
   background: var(--bb-brown); color: var(--bb-cream);
   border-bottom: 1px solid rgba(212,144,30,.3);
 }
@@ -110,23 +110,60 @@
     display: grid; grid-template-columns: 1fr 340px;
     gap: var(--space-xl); align-items: start;
   }
-  .cart-rail { display: block; position: sticky; top: calc(var(--nav-height) + 70px); }
+  .cart-rail { display: block; position: sticky; top: 184px; }
 }
 
 /* ============================================================
-   CATEGORY RAIL
+   MENU TOOLBAR  (sticky: search + category pills)
+   ------------------------------------------------------------
+   A single full-width sticky bar. Sitting outside the menu grid — and
+   giving it its own opaque background — is what makes the sticky reliable;
+   inside the grid column, the page's overflow-x clipping and the shrinking
+   navbar broke it. It sits just under the order bar.
    ============================================================ */
-.cat-nav {
-  position: sticky; top: calc(var(--nav-height) + 52px); z-index: 80;
-  display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none;
-  padding: .75rem 0; margin-bottom: var(--space-md);
+.menu-toolbar {
+  /* 64px = the navbar's scrolled height (.navbar.scrolled). The toolbar only
+     sticks after you've scrolled, by which point the navbar has shrunk to 64,
+     so anchoring here tucks it flush with no gap. */
+  position: sticky; top: 64px; z-index: 85;
   background: var(--bb-cream);
+  border-bottom: 1px solid var(--bb-cream-dark);
+  box-shadow: 0 4px 12px -8px rgba(0,0,0,.15);
+  padding: .6rem 0 .5rem;
+}
+
+.menu-search {
+  position: relative; display: flex; align-items: center;
+  margin-bottom: .55rem;
+}
+.menu-search > i.fa-magnifying-glass {
+  position: absolute; left: .95rem; color: var(--bb-gray); font-size: .9rem; pointer-events: none;
+}
+.menu-search input {
+  width: 100%; padding: .7rem 2.4rem; border-radius: var(--radius-full);
+  border: 1px solid var(--bb-cream-dark); background: var(--bb-white);
+  font-family: var(--font-body); font-size: .95rem; color: var(--bb-black);
+  -webkit-appearance: none;
+}
+.menu-search input:focus {
+  outline: none; border-color: var(--bb-gold); box-shadow: 0 0 0 3px rgba(212,144,30,.13);
+}
+.menu-search input::-webkit-search-cancel-button { display: none; }
+.search-clear {
+  position: absolute; right: .55rem; width: 28px; height: 28px; border: none;
+  border-radius: 50%; background: var(--bb-cream-dark); color: var(--bb-gray-dark);
+  cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .8rem;
+}
+.search-clear:hover { background: var(--bb-gold); color: #fff; }
+
+.cat-nav {
+  display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 .cat-nav::-webkit-scrollbar { display: none; }
 
 .cat-btn {
-  padding: .55rem 1.05rem; border-radius: var(--radius-full);
+  padding: .5rem 1.05rem; border-radius: var(--radius-full);
   background: var(--bb-white); border: 1px solid var(--bb-cream-dark);
   color: var(--bb-gray-dark); font-family: var(--font-body);
   font-size: .87rem; font-weight: 600; white-space: nowrap; cursor: pointer;
@@ -136,6 +173,20 @@
 .cat-btn.active {
   background: var(--bb-brown); border-color: var(--bb-brown); color: var(--bb-cream);
 }
+
+/* ---- search results ---- */
+.search-head {
+  display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: var(--space-md); padding-top: var(--space-sm);
+}
+.search-head h2 { font-family: var(--font-heading); font-size: 1.4rem; }
+.search-head .count { color: var(--bb-gray); font-size: .9rem; }
+.search-cat-label {
+  font-size: .72rem; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--bb-gray); font-weight: 700; margin: var(--space-md) 0 .4rem;
+}
+.search-empty { text-align: center; padding: var(--space-2xl) var(--space-md); color: var(--bb-gray); }
+.search-empty i { font-size: 2.4rem; opacity: .35; display: block; margin-bottom: var(--space-md); }
 
 /* ============================================================
    MENU
@@ -154,7 +205,7 @@
 .menu-error p { color: var(--bb-gray); margin-bottom: var(--space-lg); }
 .menu-error-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; }
 
-.ocat { margin-bottom: var(--space-xl); scroll-margin-top: calc(var(--nav-height) + 110px); }
+.ocat { margin-bottom: var(--space-xl); scroll-margin-top: 180px; }
 
 .ocat-head { margin-bottom: var(--space-md); }
 .ocat-head h2 {

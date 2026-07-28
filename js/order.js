@@ -235,30 +235,31 @@
     });
   }
 
+  /** One menu row (shared by the category view and search results). */
+  function itemRowHtml(it) {
+    var badges = '';
+    if (it.popular)    badges += ' <span class="badge-pop">Popular</span>';
+    if (!it.available) badges += ' <span class="badge-out">Sold Out</span>';
+
+    var priceHtml = esc(it.price_fmt);
+    if (hasVariantGroup(it)) priceHtml = '<span class="from">from </span>' + priceHtml;
+
+    return '<button type="button" class="oitem' + (it.available ? '' : ' sold-out') + '"' +
+           (it.available ? ' data-item="' + esc(it.id) + '"' : ' disabled') + '>' +
+             '<span class="oitem-info">' +
+               '<span class="oitem-name">' + esc(it.name) + badges + '</span>' +
+               (it.desc ? '<span class="oitem-desc">' + esc(it.desc) + '</span>' : '') +
+             '</span>' +
+             '<span class="oitem-right">' +
+               '<span class="oitem-price">' + priceHtml + '</span>' +
+               (it.available ? '<span class="oitem-add"><i class="fas fa-plus"></i></span>' : '') +
+             '</span>' +
+           '</button>';
+  }
+
   function renderMenu() {
     $('menu-root').innerHTML = S.menu.categories.map(function (c) {
-      var items = c.items.map(function (it) {
-        var badges = '';
-        if (it.popular)    badges += ' <span class="badge-pop">Popular</span>';
-        if (!it.available) badges += ' <span class="badge-out">Sold Out</span>';
-
-        // "from $X" when a size (variant) group means the base is the lowest price.
-        var priceHtml = esc(it.price_fmt);
-        if (hasVariantGroup(it)) priceHtml = '<span class="from">from </span>' + priceHtml;
-
-        return '<button type="button" class="oitem' + (it.available ? '' : ' sold-out') + '"' +
-               (it.available ? ' data-item="' + esc(it.id) + '"' : ' disabled') + '>' +
-                 '<span class="oitem-info">' +
-                   '<span class="oitem-name">' + esc(it.name) + badges + '</span>' +
-                   (it.desc ? '<span class="oitem-desc">' + esc(it.desc) + '</span>' : '') +
-                 '</span>' +
-                 '<span class="oitem-right">' +
-                   '<span class="oitem-price">' + priceHtml + '</span>' +
-                   (it.available ? '<span class="oitem-add"><i class="fas fa-plus"></i></span>' : '') +
-                 '</span>' +
-               '</button>';
-      }).join('');
-
+      var items = c.items.map(itemRowHtml).join('');
       return '<section class="ocat" id="cat-' + esc(c.id) + '">' +
                '<div class="ocat-head">' +
                  '<h2>' + (c.icon ? '<span>' + c.icon + '</span>' : '') + esc(c.name) + '</h2>' +
@@ -267,6 +268,66 @@
                '<div class="oitems">' + items + '</div>' +
              '</section>';
     }).join('');
+  }
+
+  /* ==========================================================
+     SEARCH  — filter items across every category
+     ========================================================== */
+  function runSearch(raw) {
+    var q = (raw || '').trim().toLowerCase();
+    $('search-clear').hidden = q === '';
+
+    var results = $('search-results');
+    var menu = $('menu-root');
+
+    if (q.length < 2) {
+      // Too short to search — show the normal category view.
+      results.hidden = true;
+      results.innerHTML = '';
+      menu.hidden = false;
+      return;
+    }
+
+    // Match on item name first, then description. Group hits by category so
+    // results stay legible across a 500-item menu.
+    var terms = q.split(/\s+/);
+    var groups = [];
+    var total = 0;
+
+    S.menu.categories.forEach(function (c) {
+      var hits = c.items.filter(function (it) {
+        if (!it.available) return false;
+        var hay = (it.name + ' ' + (it.desc || '')).toLowerCase();
+        return terms.every(function (t) { return hay.indexOf(t) !== -1; });
+      });
+      if (hits.length) {
+        total += hits.length;
+        groups.push({ cat: c, hits: hits });
+      }
+    });
+
+    var html;
+    if (total === 0) {
+      html = '<div class="search-empty"><i class="fas fa-magnifying-glass"></i>' +
+             '<p>No items match &ldquo;' + esc(raw.trim()) + '&rdquo;.</p></div>';
+    } else {
+      html = '<div class="search-head"><h2>Search</h2>' +
+             '<span class="count">' + total + ' item' + (total === 1 ? '' : 's') + '</span></div>';
+      html += groups.map(function (g) {
+        return '<div class="search-cat-label">' + esc(g.cat.name) + '</div>' +
+               '<div class="oitems">' + g.hits.map(itemRowHtml).join('') + '</div>';
+      }).join('');
+    }
+
+    results.innerHTML = html;
+    results.hidden = false;
+    menu.hidden = true;   // hide the category view while searching
+  }
+
+  function clearSearch() {
+    var input = $('menu-search-input');
+    if (input) input.value = '';
+    runSearch('');
   }
 
   /* ==========================================================
@@ -936,21 +997,46 @@
       loadMenu(S.location);
     });
 
-    /* ---- category jump ---- */
+    /* ---- search ---- */
+    var searchInput = $('menu-search-input');
+    if (searchInput) {
+      var searchTimer = null;
+      searchInput.addEventListener('input', function () {
+        var v = this.value;
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(function () { runSearch(v); }, 160);
+      });
+      // Enter on a single result opens it straight away.
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        var first = $('search-results').querySelector('.oitem[data-item]');
+        if (first) { openItem(first.dataset.item); this.blur(); }
+      });
+    }
+    $('search-clear').addEventListener('click', function () {
+      clearSearch();
+      var input = $('menu-search-input');
+      if (input) input.focus();
+    });
+
+    /* ---- category jump (also exits search) ---- */
     $('cat-nav').addEventListener('click', function (e) {
       var btn = e.target.closest('.cat-btn');
       if (!btn) return;
+      clearSearch();
       Array.prototype.forEach.call(this.children, function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
       var target = $('cat-' + btn.dataset.cat);
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    /* ---- open an item ---- */
-    $('menu-root').addEventListener('click', function (e) {
+    /* ---- open an item (category view OR search results) ---- */
+    function itemClick(e) {
       var btn = e.target.closest('.oitem[data-item]');
       if (btn) openItem(btn.dataset.item);
-    });
+    }
+    $('menu-root').addEventListener('click', itemClick);
+    $('search-results').addEventListener('click', itemClick);
 
     /* ---- item sheet ---- */
     $('is-body').addEventListener('change', function (e) {
